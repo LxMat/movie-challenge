@@ -1,21 +1,9 @@
-@import 'theme-variables';
-$primary-text-color:rgb(202, 202, 202);
+@import 'theme-variables.scss';
+@import 'layout.scss';
 
 body{
+  color:$primary-text-color;
   height: 100vh;
   background: rgb(232,61,253);
   background: linear-gradient(326deg, rgba(232,61,253,1) 0%, rgba(34,35,170,1) 40%, rgba(18,5,105,1) 87%, rgba(11,5,105,1) 100%);
-}
-.btn{
-  text-align: center;
-  user-select: none;
-  height: 1.5em;
-  border: 1px;
-  border-style: solid;
-  width: 116px;
-  transition: all .051s ease-in-out;
-}
-.btn:hover{
-  background-color:#532abf;
-  transform: scale(1.01);
 }

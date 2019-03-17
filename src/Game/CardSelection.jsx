@@ -63,10 +63,11 @@ export class CardQuestion extends Component {
     }
     return cardList;
   }
+  //filters selected cards and updates.
   buttonClicked() {
     let answer = this.state.cards
       .filter(c => c.selected)
-      .map(card => card.index);
+      .map(card => movies[card.index].title);
     this.props.update(answer);
   }
 
