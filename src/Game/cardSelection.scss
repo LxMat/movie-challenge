@@ -13,9 +13,6 @@
   transition: all 0.2s ease;
 }
 
-.cardItem:hover {
-  //transform: scale(1.2);
-}
 
 .unselected {
   filter: blur(1px) grayscale(100%);

@@ -75,7 +75,7 @@ export class CardQuestion extends Component {
 
   render() {
     return (
-      <div>
+      <div className="center-me fit-width">
         <p>{this.props.question.question}</p>
         <div className="CardSelect">{this.renderCards()}</div>
         <button onClick={() => this.buttonClicked()}>submit</button>
