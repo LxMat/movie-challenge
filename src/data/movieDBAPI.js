@@ -1,9 +1,9 @@
 const APIKEY = process.env.REACT_APP_APIKEY;
 const BASE_URL = 'https://api.themoviedb.org/3/';
-const BASE_POSTER_URL ='https://image.tmdb.org/t/p/w300/'
+const BASE_POSTER_URL = 'https://image.tmdb.org/t/p/w300/'
 const httpOptions = {}
 
-class MovieDBAPI{
+class MovieDBAPI {
   processResponse(response) {
     if (response.ok) {
       return response.json();

@@ -25,8 +25,11 @@ export class SelectGame extends Component {
     let descItems = [];
     let cName;
     for (let i = 0; i < 3; i++) {
-      cName = (this.state.itemSelected!==i)?"modeItem center-me":"modeItem center-me itemClicked";
-      
+      cName =
+        this.state.itemSelected !== i
+          ? "modeItem center-me"
+          : "modeItem center-me itemClicked";
+
       descItems.push(
         <div
           key={i}

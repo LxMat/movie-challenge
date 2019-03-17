@@ -21,7 +21,7 @@ export class QuestionManager extends Component {
 
     //check if there are more questions avilable
     if (nextIndex >= this.questionList.length) {
-      console.log(this.props)
+      console.log(this.props);
       this.props.history.push("/results");
     }
     this.setState({

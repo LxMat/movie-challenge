@@ -3,7 +3,7 @@ import React, { Component } from "react";
 export default class Card extends Component {
   constructor(props) {
     super(props);
-    this.poster = props.image
+    this.poster = props.image;
     this.state = {
       wasClicked: props.toggle
     };
@@ -17,9 +17,11 @@ export default class Card extends Component {
   render() {
     return (
       <div
-        className={`cardItem ${this.state.wasClicked ? "selected" : "unselected"}`}
+        className={`cardItem ${
+          this.state.wasClicked ? "selected" : "unselected"
+        }`}
         onClick={() => this.toggleCard()}
-        style={{backgroundImage:`url(${this.poster})`}}
+        style={{ backgroundImage: `url(${this.poster})` }}
       >
         this is a card click me!
       </div>

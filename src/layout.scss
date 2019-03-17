@@ -1,12 +1,15 @@
-.flexgrid{
-  display:flex
+.flexgrid {
+  display: flex
 }
-.col{
-  flex:1
+
+.col {
+  flex: 1
 }
-.center-me{
-  margin:0 auto;
+
+.center-me {
+  margin: 0 auto;
 }
-.fit-width{
+
+.fit-width {
   width: fit-content;
 }

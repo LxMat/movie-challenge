@@ -13,6 +13,7 @@
   justify-content: space-between;
   font-size: 20px;
 }
+
 .MinMax span:first-child {
   margin-left: 10px;
 }
@@ -22,9 +23,11 @@
   width: 600px;
   -webkit-appearance: none;
 }
+
 .rs-range:focus {
   outline: none;
 }
+
 .rs-range::-webkit-slider-runnable-track {
   width: 100%;
   height: 1px;
@@ -34,6 +37,7 @@
   border-radius: 0px;
   border: 0px solid #010101;
 }
+
 .rs-range::-webkit--thumb {
   box-shadow: none;
   border: 0px solid #ffffff;

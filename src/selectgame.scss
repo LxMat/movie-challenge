@@ -1,28 +1,32 @@
 @import 'layout.scss';
 @import 'theme-variables.scss';
 
-#gameModeBox{
+#gameModeBox {
   width: fit-content;
-  margin-top:5em;
+  margin-top: 5em;
   background: $background-blue;
-  padding:10px;
+  padding: 10px;
   border-radius: 25px;
-  .modeItem{
+
+  .modeItem {
     padding: 4px;
     width: fit-content;
-    &:hover{
-      background:$primary-pink;
+
+    &:hover {
+      background: $primary-pink;
 
     }
   }
-  .itemClicked{
-    background:$primary-pink;
+
+  .itemClicked {
+    background: $primary-pink;
   }
 }
-#modeDescription{
+
+#modeDescription {
   width: fit-content;
-  margin-top:5em;
+  margin-top: 5em;
   background: $background-blue;
-  padding:10px;
+  padding: 10px;
   border-radius: 15px;
-} 
+}

@@ -21,7 +21,7 @@ class App extends Component {
           <Route exact path="/" component={StartScreen} />
           <Route path="/selectgame" component={SelectGame} />
           <Route path="/play:id" component={Game} />
-          <Route path="/results" component={ResultScreen}/>
+          <Route path="/results" component={ResultScreen} />
         </header>
       </div>
     );

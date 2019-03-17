@@ -49,7 +49,7 @@ export class Game extends Component {
                 questionList={this.questionList}
                 currentQuestion={this.state.currentQuestion}
                 update={this.updateScore}
-                history = {this.props.history}
+                history={this.props.history}
               />
             </CSSTransition>
           </TransitionGroup>

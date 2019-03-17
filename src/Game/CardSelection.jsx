@@ -16,7 +16,6 @@ const movies = [
   }
 ];
 
-
 //card selection generates cards and keeps track on which cards have been clicked.
 export class CardQuestion extends Component {
   constructor(props) {
@@ -33,6 +32,7 @@ export class CardQuestion extends Component {
       poster: ""
     };
   }
+  //the card state is used to keep track on which cards are selected
   generateCardState(n) {
     let cards = [];
     for (let i = 0; i < n; i++) {
@@ -40,6 +40,7 @@ export class CardQuestion extends Component {
     }
     return cards;
   }
+
   toggleSelected(i) {
     let cards = this.state.cards;
     cards[i].selected = !cards[i].selected;
@@ -47,6 +48,7 @@ export class CardQuestion extends Component {
       cards: cards
     });
   }
+
   renderCards() {
     let n = this.state.nCards;
     let cardList = [];

@@ -16,11 +16,11 @@ class GameModel extends ObservableModel {
         min: 0,
         max: 210,
         correct: 74,
-        question:"give me a number bigger than 74 :-)"
+        question: "give me a number bigger than 74 :-)"
       }
     ]
   }
-  generateQuestions(mode=1){
+  generateQuestions(mode = 1) {
     return this.dummyQuestions;
   }
 }
