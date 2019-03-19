@@ -22,7 +22,7 @@ export class CardQuestion extends Component {
     super(props);
 
     let nCards = props.question.cards.length;
-
+    console.log(this.props)
     let cardState = this.generateCardState(nCards);
     this.state = {
       nCards: nCards,

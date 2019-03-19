@@ -38,7 +38,6 @@ export default class Slider extends Component {
 
     return (
       <div className="slider">
-        following is from props: <br />
         {this.props.question.question}
         <div className="range-slider">
           {sliderBullet}

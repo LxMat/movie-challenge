@@ -49,8 +49,9 @@ export class QuestionManager extends Component {
       case "CARD":
         return <CardSelection question={q} update={this.props.update} />;
       case "SLIDER":
+        console.log(q)
         return (
-          <Slider min="0" max="201" question={q} update={this.props.update} />
+          <Slider min={q.min} max={q.max} question={q} update={this.props.update} />
         );
       default:
         return <p>failed to load the question</p>;
