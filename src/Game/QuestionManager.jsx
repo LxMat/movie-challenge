@@ -4,7 +4,6 @@ import CardSelection from "./CardSelection";
 //QuestionManager renders different questionComponents depending on question type
 //at the moment there are slider and card-type questionsComponents
 
-//TODO make <Slider> retrive min max values dynamically
 export class QuestionManager extends Component {
   constructor(props) {
     super(props);

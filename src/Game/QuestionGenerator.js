@@ -1,5 +1,5 @@
 //question generateor creates a list of questionObjects that will be passed to the components
-//TODO:generateCardQuestion can only create a 2-card question. it should be more general
+//TODO:generateCardQuestion can only create  2-card questions. it should be more general
 export default class QuestionGenerator {
   constructor() {
     this.index = 0;
@@ -7,7 +7,6 @@ export default class QuestionGenerator {
   }
 
   generateQuestions(movies) {
-    console.log(movies)
     this.movies = movies;
     let ids = movies.map(movie => movie.id)
     this.questions.push(this.generateCardQuestion(ids))
