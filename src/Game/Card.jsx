@@ -1,30 +1,15 @@
-import React, { Component } from "react";
+import React from 'react'
 
-export default class Card extends Component {
-  constructor(props) {
-    super(props);
-    this.poster = props.image;
-    this.state = {
-      wasClicked: props.toggle
-    };
-  }
-  toggleCard() {
-    this.setState({
-      wasClicked: !this.state.wasClicked
-    });
-    this.props.onClick();
-  }
-  render() {
-    return (
+export default function Card(props) {
+  let selected = (props.toggle)?'selected':'unselected';
+  return (
+    <div>
       <div
-        className={`cardItem ${
-          this.state.wasClicked ? "selected" : "unselected"
-        }`}
-        onClick={() => this.toggleCard()}
-        style={{ backgroundImage: `url(${this.poster})` }}
-      >
-        this is a card click me!
-      </div>
-    );
-  }
+        className={`cardItem ${selected}` }
+        onClick={() => props.onClick()}
+        style={{ backgroundImage: `url(${props.image})` }}
+      />
+    </div>
+  )
 }
+

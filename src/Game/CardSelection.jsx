@@ -43,7 +43,8 @@ export class CardQuestion extends Component {
 
   toggleSelected(i) {
     let cards = this.state.cards;
-    cards[i].selected = !cards[i].selected;
+    cards.map(card => card.selected=false)
+    cards[i].selected = true;
     this.setState({
       cards: cards
     });
