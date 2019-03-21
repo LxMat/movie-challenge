@@ -8,7 +8,6 @@ export class QuestionManager extends Component {
   constructor(props) {
     super(props);
     this.questionList = props.questionList;
-    console.log(this.questionList);
 
     this.state = {
       currentQuestion: props.currentQuestion
@@ -20,7 +19,6 @@ export class QuestionManager extends Component {
 
     //check if there are more questions avilable
     if (nextIndex >= this.questionList.length) {
-      console.log(this.props);
       this.props.history.push("/results");
     }
     this.setState({
@@ -48,9 +46,13 @@ export class QuestionManager extends Component {
       case "CARD":
         return <CardSelection question={q} update={this.props.update} />;
       case "SLIDER":
-        console.log(q)
         return (
-          <Slider min={q.min} max={q.max} question={q} update={this.props.update} />
+          <Slider
+            min={q.min}
+            max={q.max}
+            question={q}
+            update={this.props.update}
+          />
         );
       default:
         return <p>failed to load the question</p>;
@@ -62,8 +64,10 @@ export class QuestionManager extends Component {
     return (
       <div>
         {question}
-        <button onClick={() => this.previousQuestion()}>back</button>
-        <button onClick={() => this.nextQuestion()}>next</button>
+        <div className="navigation">
+          <button onClick={() => this.previousQuestion()}>back</button>
+          <button onClick={() => this.nextQuestion()}>next</button>
+        </div>
       </div>
     );
   }

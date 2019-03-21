@@ -7,7 +7,7 @@ export default class Slider extends Component {
     this.state = {
       min: props.min,
       max: props.max,
-      currentVal: props.max / 4
+      currentVal: Math.round(props.max / 4)
     };
   }
 

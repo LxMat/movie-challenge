@@ -6,7 +6,7 @@ export class SelectGame extends Component {
     super(props);
     this.state = {
       itemHover: 0,
-      itemSelected: null
+      itemSelected: 0
     };
     this.modedescriptions = [
       "Description game mode 1",
@@ -33,7 +33,7 @@ export class SelectGame extends Component {
       descItems.push(
         <div
           key={i}
-          onClick={e => this.itemClicked(e, i)}
+          onClick={() => this.itemClicked(i)}
           onMouseOver={e => this.itemHover(i)}
           className={cName}
         >
@@ -43,7 +43,7 @@ export class SelectGame extends Component {
     }
     return descItems;
   }
-  itemClicked(e, id) {
+  itemClicked(id) {
     this.setState({
       itemSelected: id
     });
@@ -82,9 +82,9 @@ export class SelectGame extends Component {
         </div>
         <div className="center-me fit-width">
           <button
-            onClick={() =>
-              this.props.history.push(`/play${this.state.itemSelected}`)
-            }
+            onClick={() =>{
+              this.props.history.push(`/play/${this.state.itemSelected}`)
+            }}
           >
             Start!
           </button>
