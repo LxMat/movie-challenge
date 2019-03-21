@@ -38,7 +38,7 @@ The general structure of the app can be viewed as follows:
 
 **Game** - The quiz. loads the data from the API and generates questions which is sent to the 
 
-***QuestionManager*** - Keeps track of what type of questionComponent should be rendered. At the momen there are only _CardSelection_ and _Slider_ components
+***QuestionManager*** - Keeps track of what type of questionComponent should be rendered. At the moment there are only _CardSelection_ and _Slider_ components
 
 **ResultScreen** - Shows the users answer and the correct answer
 
