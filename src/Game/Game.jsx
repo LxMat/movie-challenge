@@ -11,7 +11,6 @@ export class Game extends Component {
     super(props);
     let id = this.props.match.params.id;
 
-  
     this.movies = [];
     this.state = {
       id: id,
@@ -20,12 +19,12 @@ export class Game extends Component {
       score: [],
       movies: this.movies
     };
-    this.updateScore = this.updateScore.bind(this);
+    this.updateAnswers = this.updateAnswers.bind(this);
     this.questionList = [];
   }
 
   //loadFromAPI fetches the data and returns the important results as a list of Promises
-  //TODO: ids should not be inside the method
+  //TODO: ids should not be inside the method but retrieved from somewhere else
   loadFromAPI() {
     let ids = [263115, 284053];
     return Promise.all(
@@ -43,38 +42,41 @@ export class Game extends Component {
   }
 
   componentDidMount() {
-    this.loadFromAPI().then(movie => {
+    this.loadFromAPI().then(movies => {
       this.setState({
-        movies: movie,
+        movies: movies,
         status: "LOADED"
       });
     });
     this.questionList = gameInstance.generateQuestions(this.state.id);
   }
 
-  updateScore(data) {
-    let score = this.state.score;
-    score.push({
-      answer: data
+  updateAnswers(data) {
+    this.props.update({
+      user: data,
+      correct: this.questionList[this.state.currentQuestion].correct
     });
     this.setState({
-      score: score
+      currentQuestion: this.state.currentQuestion + 1
     });
-    console.log(this.state.score);
+    if (this.state.currentQuestion === this.state.movies.length - 1) {
+      this.props.history.push("/results");
+    }
   }
 
   render() {
     let movie = null;
 
     if (this.state.status === "LOADED") {
-      console.log(this.state.movies);
       let qGen = new QuestionGenerator();
       this.questionList = qGen.generateQuestions(this.state.movies);
+
       movie = (
         <QuestionManager
+          key={this.state.currentQuestion}
           questionList={this.questionList}
           currentQuestion={this.state.currentQuestion}
-          update={this.updateScore}
+          update={this.updateAnswers}
           history={this.props.history}
         />
       );
@@ -86,9 +88,17 @@ export class Game extends Component {
       );
     }
     return (
-        <div className="questionContainer">
-            {movie}    
-        </div>
+      <div className="questionContainer center-me fit-width">
+        <TransitionGroup>
+          <CSSTransition
+            key={this.state.currentQuestion}
+            classNames="fade"
+            timeout={{ enter: 500, exit: 300 }}
+          >
+            {movie}
+          </CSSTransition>
+        </TransitionGroup>
+      </div>
     );
   }
 }

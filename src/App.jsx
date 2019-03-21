@@ -11,8 +11,26 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentScreen: "start"
+      answers: []
     };
+    this.updateAnswer =this.updateAnswer.bind(this);
+    this.getAnswers =this.getAnswers.bind(this);
+    this.newGame = this.newGame.bind(this);
+  }
+  updateAnswer(answer) {
+    let newAnswers = this.state.answers;
+    newAnswers.push(answer);
+    this.setState({
+      answers: newAnswers
+    });
+  }
+  getAnswers(){
+    return this.state.answers;
+  }
+  newGame(){
+    this.setState({
+      answers: []
+    })
   }
   render() {
     return (
@@ -20,8 +38,16 @@ class App extends Component {
         <header className="App-header">
           <Route exact path="/" component={StartScreen} />
           <Route path="/selectgame" component={SelectGame} />
-          <Route path="/play:id" component={Game} />
-          <Route path="/results" component={ResultScreen} />
+          <Route
+            path="/play/:id"
+            render={props => <Game {...props} update={this.updateAnswer} />}
+          />
+          <Route
+            path="/results"
+            render={props => (
+              <ResultScreen {...props} getAnswers={this.getAnswers} update={this.newGame} />
+            )}
+          />
         </header>
       </div>
     );

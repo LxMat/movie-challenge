@@ -22,7 +22,7 @@ export default class QuestionGenerator {
       type: "CARD",
       cards: ids,
       question: "which movie was released first",
-      correct: this.getEarlierDate(dates) //we can either use the cardIndex or the cardID:263115
+      correct: this.movies[this.getEarlierDate(dates)].title //we can either use the cardIndex or the cardID:263115
     }
     this.index++;
     return question;

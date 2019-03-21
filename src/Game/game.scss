@@ -79,26 +79,23 @@
   font-size: 36px;
 }
 
-.example-enter {
+.fade-enter {
+  height: 0;
   position: relative;
-  z-index: -1;
   transition-delay: 1100ms;
   opacity: 0.01;
 }
 
-.example-enter.example-enter-active {
-  z-index: 1;
+.fade-enter.fade-enter-active {
   opacity: 1;
-  transition-delay: 1000ms;
-  transition: opacity 200ms ease-in;
+  transition: opacity 800ms ease-in;
 }
 
-.example-exit {
+.fade-exit {
   opacity: 1;
 }
 
-.example-exit.example-exit-active {
-  z-index: -11;
+.fade-exit.fade-exit-active {
   opacity: 0.01;
   transition: opacity 150ms ease-in;
 }
