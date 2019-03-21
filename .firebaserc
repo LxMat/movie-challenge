@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "fir-demo-project",
+    "UMC_test": "test-f51e3"
+  }
+}
