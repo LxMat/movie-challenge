@@ -29,7 +29,7 @@ The general structure of the app can be viewed as follows:
       <Slider/>
     </QuestionManager>
   </Game>
-  <ResulsScreen/>
+  <ResultScreen/>
 <App/>
 ```
 **StartScreen** - Startscreen of the app 
