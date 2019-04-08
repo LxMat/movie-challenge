@@ -2,7 +2,7 @@
 MovieChallenge is a project created for the course *DH2642 Interactionprogramming and the Dynamic Web* at KTH by Adel Bavey and Alexander Heikinaho.
 This project uses the Movie Database API.
 
-#####[Link to the App](https://test-f51e3.firebaseapp.com/)
+[Link to the App](https://test-f51e3.firebaseapp.com/)
 
 #### Short description of your project
 
@@ -33,11 +33,17 @@ The general structure of the app can be viewed as follows:
 <App/>
 ```
 **StartScreen** - Startscreen of the app 
+
 **SelectGame** - Selects different game modes. at the moment there in only one game mode.
+
 **Game** - The quiz. loads the data from the API and generates questions which is sent to the 
-***QuestionManager*** - Keeps track of what type of questionComponent should be rendered. At the momen there are only _CardSelection_ and _Slider_ components
+
+***QuestionManager*** - Keeps track of what type of questionComponent should be rendered. At the moment there are only _CardSelection_ and _Slider_ components
+
 **ResultScreen** - Shows the users answer and the correct answer
 
 Other files files of interest:
+
 _movieDBAPI.js_ - fetches data from the API
+
 _QuestionGenerator.js_ generates the questions for the quiz
