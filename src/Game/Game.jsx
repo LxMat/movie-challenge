@@ -47,7 +47,8 @@ export class Game extends Component {
         movies: movies,
         status: "LOADED"
       });
-    });
+    })
+    .catch(e => console.error("failed loding from API :",e));
     this.questionList = gameInstance.generateQuestions(this.state.id);
   }
 

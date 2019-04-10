@@ -11,6 +11,7 @@ export default class QuestionGenerator {
     let ids = movies.map(movie => movie.id)
     this.questions.push(this.generateCardQuestion(ids))
     this.questions.push(this.generateSliderQuestion(this.movies[1]))
+    console.log("questions: ",this.questions);
     return this.questions;
   }
 
@@ -21,6 +22,8 @@ export default class QuestionGenerator {
       index: this.index,
       type: "CARD",
       cards: ids,
+      title:this.movies.map(movie => movie.title),
+      poster:this.movies.map(movie => movie.poster),
       question: "which movie was released first",
       correct: this.movies[this.getEarlierDate(dates)].title //we can either use the cardIndex or the cardID:263115
     }
