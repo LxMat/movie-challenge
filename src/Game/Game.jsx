@@ -5,7 +5,7 @@ import MDB_API from "../data/movieDBAPI";
 import QuestionGenerator from "./QuestionGenerator";
 import gameInstance from "../data/GameModel";
 import "./game.scss";
-
+import storedIDs from "../data/movieIDs.json"
 export class Game extends Component {
   constructor(props) {
     super(props);
@@ -27,8 +27,9 @@ export class Game extends Component {
   //TODO: ids should not be inside the method but retrieved from somewhere else
   loadFromAPI() {
     let ids = [263115, 284053];
+    console.log(storedIDs);
     return Promise.all(
-      ids.map(id => {
+      storedIDs.ids.map(id => {
         return MDB_API.getMovie(id).then(movie => ({
           id: movie.id,
           poster: movie.poster_path,
