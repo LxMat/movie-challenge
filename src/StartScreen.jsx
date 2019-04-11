@@ -1,4 +1,5 @@
 import React from "react";
+import { MovieImage } from './MovieImage';
 
 export default function StartScreen(props) {
   return (
@@ -10,6 +11,7 @@ export default function StartScreen(props) {
           this is a Knapp
         </button>
       </div>
+      <MovieImage searchText="lord of the rings wallpaper"/>
     </div>
   );
 }

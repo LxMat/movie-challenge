@@ -26,6 +26,8 @@ export class Game extends Component {
   //loadFromAPI fetches the data and returns the important results as a list of Promises
   //TODO: ids should not be inside the method but retrieved from somewhere else
   loadFromAPI() {
+    let ids = [263115, 284053];
+    console.log(storedIDs);
     return Promise.all(
       storedIDs.ids.map(id => {
         return MDB_API.getMovie(id).then(movie => ({
