@@ -59,18 +59,17 @@ export class CardQuestion extends Component {
     }
     return cardList;
   }
-  
+
   //filters selected cards and updates.
   buttonClicked() {
-
     let answer = this.state.cards
       .filter(c => c.selected)
       .map(card => this.state.title[card.index]);
     this.props.update(answer);
   }
+  
   render() {
-    
-    return (
+      return (
       <div className="center-me fit-width">
         <p className="question">{this.props.question.question}</p>
         <div className="CardSelect  wrap">{this.renderCards()}</div>

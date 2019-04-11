@@ -2,7 +2,6 @@ import React from 'react'
 
 export default function Card(props) {
   let selected = (props.toggle)?' selected':' unselected';
-  // console.log("style", props.cardStyle)
   return (
     <div>
       <div
