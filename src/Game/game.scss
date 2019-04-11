@@ -1,3 +1,15 @@
+.CardSelect > div{
+  margin: auto; //magic
+}
+.cardItem img{
+  width:inherit;
+  height: inherit;
+}
+
+.question{
+  text-align: center;
+}
+
 .slider {
   display: flex;
   flex-direction: column;

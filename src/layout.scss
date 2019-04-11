@@ -1,11 +1,17 @@
 .flexgrid {
   display: flex
 }
-
+.wrap{
+  display:flex;
+  flex-wrap: wrap
+}
 .col {
   flex: 1
 }
-
+.mob-card{
+  height: 225px;
+  width: 150px;
+}
 .center-me {
   margin: 0 auto;
 }
