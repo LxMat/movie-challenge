@@ -40,6 +40,11 @@ export class CardQuestion extends Component {
   renderCards() {
     let n = this.state.nCards;
     let cardList = [];
+    let cardStyle = "cardItem "
+    if(window.innerWidth<700){
+      cardStyle += "mob-card col "
+    }
+    // console.log(cardStyle)
     for (let i = 0; i < n; i++) {
       cardList.push(
         <Card
@@ -48,25 +53,26 @@ export class CardQuestion extends Component {
           onClick={() => this.toggleSelected(i)}
           title={this.state.title[i]}
           image={"https://image.tmdb.org/t/p/w300/" + this.state.poster[i]}
+          cardStyle = {cardStyle}
         />
       );
     }
     return cardList;
   }
+
   //filters selected cards and updates.
   buttonClicked() {
-    console.log(this.state.title)
     let answer = this.state.cards
       .filter(c => c.selected)
       .map(card => this.state.title[card.index]);
     this.props.update(answer);
   }
-
+  
   render() {
-    return (
+      return (
       <div className="center-me fit-width">
-        <p>{this.props.question.question}</p>
-        <div className="CardSelect">{this.renderCards()}</div>
+        <p className="question">{this.props.question.question}</p>
+        <div className="CardSelect  wrap">{this.renderCards()}</div>
         <button onClick={() => this.buttonClicked()}>submit</button>
       </div>
     );
