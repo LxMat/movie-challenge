@@ -26,7 +26,10 @@ class MovieDBAPI {
     const URL = BASE_URL + `movie/${id}?api_key=${APIKEY}`;
     return this.getRequest(URL,HEADER);
   }
-  
+  getActor(id){
+    const URL = BASE_URL + `person/${id}?api_key=${APIKEY}`;
+    return this.getRequest(URL);
+  }
   searchActor(query){
     const URL = BASE_URL + `search/person?api_key=${APIKEY}&query=${query}`
     return this.getRequest(URL)

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Slider from "./Slider";
 import CardSelection from "./CardSelection";
+import ActorQuestion from "./ActorQuestion"
 //QuestionManager renders different questionComponents depending on question type
 //at the moment there are slider and card-type questionsComponents
 
@@ -54,6 +55,11 @@ export class QuestionManager extends Component {
             update={this.props.update}
           />
         );
+      case "SEARCH":
+          return(
+            <ActorQuestion question={q}/>
+          )
+          
       default:
         return <p>failed to load the question</p>;
     }

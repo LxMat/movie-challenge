@@ -6,16 +6,26 @@ export default class QuestionGenerator {
     this.questions = [];
   }
 
-  generateQuestions(movies) {
+  generateQuestions(movies,actors) {
     this.movies = movies;
-    let ids = movies.map(movie => movie.id)
-    this.questions.push(this.generateCardQuestion(ids))
-    this.questions.push(this.generateSliderQuestion(this.movies[1]))
-    console.log("questions: ",this.questions);
+    console.log('data in generator',movies,actors);
+    let ids = movies.map(movie => movie.id);
+    // let actors = data.map(actor => actor.id)
+    this.questions.push(this.generateCardQuestion(ids));
+    this.questions.push(this.generateSliderQuestion(this.movies[1]));
+    this.questions.push(this.generateSearchQuestion(actors[0]));
     return this.questions;
   }
 
-  
+  generateSearchQuestion( {id,name} ){
+    const question = {
+      id: id,
+      type:"SEARCH",
+      name:name,
+      question:`name three movies that ${name} has appeared in`
+    }
+    return question
+  }  
   generateCardQuestion(ids) {
     const dates = this.movies.map(movie => movie.release_date)
     const question = {

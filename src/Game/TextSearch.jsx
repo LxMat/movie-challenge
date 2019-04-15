@@ -11,7 +11,7 @@ class TextSearch extends Component {
     super(props);
     this.suggestions = [];
     this.pause = 1500; //debounce pause timer
-    MDB_API.fetchFromServer().then(res => console.info(res))
+    // MDB_API.fetchFromServer().then(res => console.info(res))
     this.state = {
       suggestions: [],
       movieIDs:[],
@@ -46,7 +46,6 @@ class TextSearch extends Component {
       if (activeSuggestion === 0) {
         return;
       }
-
       this.setState({ activeSuggestion: activeSuggestion - 1 });
     }
     // User pressed the down arrow, increment the index
@@ -72,8 +71,7 @@ class TextSearch extends Component {
     }
   }
 
-
-
+  
   //used for debugging...
   printResponse(res){
     console.log( res.results

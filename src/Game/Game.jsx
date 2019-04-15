@@ -27,8 +27,6 @@ export class Game extends Component {
   //loadFromAPI fetches the data and returns the important results as a list of Promises
   //TODO: ids should not be inside the method but retrieved from somewhere else
   loadFromAPI() {
-    let ids = [263115, 284053];
-
     return Promise.all(
       storedIDs.ids.map(id => {
         return MDB_API.getMovie(id).then(movie => ({
@@ -42,16 +40,34 @@ export class Game extends Component {
       })
     );
   }
+  loadActorfromAPI(){
+   return Promise.all(
+     storedIDs.actorIds.map(id =>{
+       return MDB_API.getActor(id).then(actor =>{
+         return({         
+          id:actor.id,
+          name:actor.name
+          })
+       });
+     })
+   ) 
+  }
 
   componentDidMount() {
-    this.loadFromAPI().then(movies => {
+    this.loadFromAPI()
+    .then(movies => {
       this.setState({
         movies: movies,
-        status: "LOADED"
       });
     })
+    .then(this.loadActorfromAPI)
+    .then(actors => {
+      this.setState(
+      {
+        actors:actors,
+        status:"LOADED"
+      })})
     .catch(e => console.error("failed loding from API :",e));
-    this.questionList = gameInstance.generateQuestions(this.state.id);
   }
 
   updateAnswers(data) {
@@ -72,7 +88,7 @@ export class Game extends Component {
 
     if (this.state.status === "LOADED") {
       let qGen = new QuestionGenerator();
-      this.questionList = qGen.generateQuestions(this.state.movies);
+      this.questionList = qGen.generateQuestions(this.state.movies,this.state.actors);
 
       movie = (
         <QuestionManager
@@ -92,7 +108,6 @@ export class Game extends Component {
     }
     return (
       <div className="questionContainer center-me fit-width">
-      <TextSearch/>
         <TransitionGroup>
           <CSSTransition
             key={this.state.currentQuestion}
