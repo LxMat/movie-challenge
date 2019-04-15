@@ -28,19 +28,18 @@ class TextSearch extends Component {
     const {
       activeSuggestion,
       suggestions,
-      state:movieID
-    
     } = this.state
      
     // User pressed the enter key, update the input and close the suggestions
     if (e.keyCode === 13) {
+
       const index = activeSuggestion;
       this.setState({
         activeSuggestion: 0,
         showSuggestions: false,
         userInput: suggestions[activeSuggestion]
       });
-      
+      if(this.props.callback) this.props.callback(this.state.movieIDs[index])      
     }
     // User pressed the up arrow, decrement the index
     else if (e.keyCode === 38) {
@@ -198,7 +197,6 @@ debouncedOnChange = (eventVal) => {
     return (
       <div onChange={onChange}>
         <input type="text" onChange={this.onChange} onKeyUp={onKeyDown} value={userInput}/>
-        {/* <em>{this.state.suggestions}</em> */}
         {this.renderSuggestions()}
       </div>
     );
