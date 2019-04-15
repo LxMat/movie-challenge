@@ -20,22 +20,27 @@ class TextSearch extends Component {
       // The suggestions that match the user's input
       showSuggestions: true,
       loading:false
-      // What the user has entered
     };  
     this.debouncedOnChange = this.debounce(200,this.debouncedOnChange)
   }
   
   onKeyDown = e => {
-    // MDB_API.testcall().then(console.log)
-    const {activeSuggestion,filteredSuggestions,suggestions} = this.state
-     // User pressed the enter key, update the input and close the suggestions
+    const {
+      activeSuggestion,
+      suggestions,
+      state:movieID
+    
+    } = this.state
+     
+    // User pressed the enter key, update the input and close the suggestions
     if (e.keyCode === 13) {
-
+      const index = activeSuggestion;
       this.setState({
         activeSuggestion: 0,
         showSuggestions: false,
         userInput: suggestions[activeSuggestion]
       });
+      
     }
     // User pressed the up arrow, decrement the index
     else if (e.keyCode === 38) {
@@ -108,7 +113,6 @@ debouncedOnChange = (eventVal) => {
         loading:false,
         showSuggestions:true
       });
-      console.log(this.state.suggestions)
         }
           )
     .catch(console.error)
@@ -120,12 +124,9 @@ debouncedOnChange = (eventVal) => {
 
   renderSuggestions(){
     const {
-      onChange,
       onClick,
-      onKeyDown,
       state: {
         activeSuggestion,
-        filteredSuggestions,
         showSuggestions,
         userInput,
         suggestions
@@ -144,7 +145,7 @@ debouncedOnChange = (eventVal) => {
     }else if (showSuggestions && userInput) {
       if (suggestions.length) {
         suggestionsListComponent = (
-          <ul className="suggestions" onKeyUp={console.log('ul')}>
+          <ul className="suggestions">
             {suggestions.map((suggestion, index) => {
               let className;
 
@@ -181,21 +182,15 @@ debouncedOnChange = (eventVal) => {
   }
   onClick = index => {
     const {movieIDs} = this.state;
-    // console.log(this.state.suggestions[index])
     this.setState({activeSuggestion:index})
   
     if(this.props.callback) this.props.callback(movieIDs[index]); //if callback exists run it.
   }
   render() {
-    // console.log(this.state.suggestions)
     const {
       onChange,
-      onClick,
       onKeyDown,
       state: {
-        activeSuggestion,
-        filteredSuggestions,
-        showSuggestions,
         userInput
       }
     } = this;
