@@ -2,18 +2,19 @@ const APIKEY = process.env.REACT_APP_APIKEY;
 const BASE_URL = 'https://api.themoviedb.org/3/';
 const HEADER = {
   "Content-Type":"application/javascript"}
-const serverURL = 'http://127.0.0.1:3001/moviequery'
+const serverURL = 'https://umcnode1.herokuapp.com/moviequery'
 class MovieDBAPI {
   processResponse(response) {
     if (response.ok) {
+      // console.log(response)
       return response.json();
     }
     throw response;
   }
-//https://api.themoviedb.org/3/search/movie/?query=thor&
-  fetchFromServer(movie){
+
+  fetchFromServer(movie='thor'){
     console.log('fetching from server')
-    let query = `?apicall=https://api.themoviedb.org/3/search/movie/?query=${movie}&`
+    let query = `?apicall=api.themoviedb.org/3/search/movie?query=${movie}`
     return fetch(serverURL+query).then(this.processResponse)
   }
 
@@ -25,10 +26,14 @@ class MovieDBAPI {
     const URL = BASE_URL + `movie/${id}?api_key=${APIKEY}`;
     return this.getRequest(URL,HEADER);
   }
+  
+  searchActor(query){
+    const URL = BASE_URL + `search/person?api_key=${APIKEY}&query=${query}`
+    return this.getRequest(URL)
+  }
 
-  //searchMovie gets CORS error which is why we proxy the api-call.
   searchMovie(query){
-    const URL = BASE_URL + `search/movie/?api_key=${APIKEY}&query=${query}`
+    const URL = BASE_URL + `search/movie?api_key=${APIKEY}&query=${query}`
     return this.getRequest(URL)
   }
 
@@ -37,16 +42,16 @@ class MovieDBAPI {
     return this.getRequest(URL);
   }
 
-  // https://api.themoviedb.org/3/movie/api_key=148a6f914e33e9183cd2dc9171295a05&query=avatar
-  // https://api.themoviedb.org/3/search/movie?api_key=148a6f914e33e9183cd2dc9171295a05&query=Thor ragnarok
-  
-
-  exampleCall() {
-    const URL = BASE_URL + `movie/550?api_key=${APIKEY}`;
-    fetch(URL)
-      .then(this.processResponse)
-      .then(console.log);
-  }
+getCredits(movieID){
+  const URL = BASE_URL + `movie/${movieID}/credits?api_key=${APIKEY}`
+  return this.getRequest(URL)
+}
+exampleCall() {
+  const URL = BASE_URL + `movie/550?api_key=${APIKEY}`;
+  fetch(URL)
+    .then(this.processResponse)
+    .then(console.log);
+}
 }
 const MDB_API = new MovieDBAPI();
 export default MDB_API;
