@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import Slider from "./Slider";
 import CardSelection from "./CardSelection";
+
 import ActorQuestion from "./ActorQuestion"
+import {MovieImage} from "../MovieImage";
+import GuessMovieImage from "./GuessMovieImage";
 //QuestionManager renders different questionComponents depending on question type
 //at the moment there are slider and card-type questionsComponents
 
@@ -56,10 +59,15 @@ export class QuestionManager extends Component {
           />
         );
       case "SEARCH":
-          return(
-            <ActorQuestion question={q}/>
-          )
+        return(
+          <ActorQuestion question={q}/>
+        );
           
+        case "GuessMovieImage":      
+              return (
+                <GuessMovieImage question={q} update={this.props.update}/>
+              );
+
       default:
         return <p>failed to load the question</p>;
     }

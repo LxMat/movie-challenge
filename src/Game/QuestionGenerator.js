@@ -8,12 +8,12 @@ export default class QuestionGenerator {
 
   generateQuestions(movies,actors) {
     this.movies = movies;
-    console.log('data in generator',movies,actors);
-    let ids = movies.map(movie => movie.id);
-    // let actors = data.map(actor => actor.id)
-    this.questions.push(this.generateCardQuestion(ids));
-    this.questions.push(this.generateSliderQuestion(this.movies[1]));
+    let ids = movies.map(movie => movie.id)
     this.questions.push(this.generateSearchQuestion(actors[0]));
+    this.questions.push(this.generateCardQuestion(ids))
+    this.questions.push(this.generateSliderQuestion(this.movies[1]))
+    this.questions.push(this.generateGuessMovieImageQuestion(this.movies[0]))
+    console.log("questions: ",this.questions);
     return this.questions;
   }
 
@@ -40,6 +40,7 @@ export default class QuestionGenerator {
     this.index++;
     return question;
   }
+
   //TODO: make max min a random range
   generateSliderQuestion(movie) {
     let revenue = movie.revenue;
@@ -53,6 +54,20 @@ export default class QuestionGenerator {
       max: max,
       correct: revenue,
       question: `How much did ${movie.title} earn in revenue`
+    }
+    this.index++;
+    return question;
+  }
+
+  generateGuessMovieImageQuestion(movie) {
+    //const dates = this.movies.map(movie => movie.release_date)
+    const title  = movie.title;
+    const question = {
+      index: this.index,
+      type: "GuessMovieImage",
+      movieID: movie.id,
+      correct: title,
+      question: `What's the name of the movie in the image?`
     }
     this.index++;
     return question;
