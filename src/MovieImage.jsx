@@ -10,8 +10,8 @@ export class MovieImage extends Component {
   }
   componentDidMount() {
     fetch('https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key='+FLICKR_APIKEY+'&text='+this.props.searchText+'&sort=relevance&format=json&nojsoncallback=1')
-      .then(response => response.json())
-      .then(data => this.setState({ data }));
+    .then(response => response.json())
+    .then(data => this.setState({ data }));
   }
   render() {
     const { data } = this.state;
