@@ -5,7 +5,8 @@ export class ResultScreen extends Component {
     let answers = this.props.getAnswers().map((answer, i) => {
       return { question: i + 1, answer: answer };
     });
-    answers.map(row => console.log(row.answer.answer))
+    // answers.map(row => console.log(row.answer.answer))
+    console.log(answers)
     let table = (
       <table>
         <tbody>

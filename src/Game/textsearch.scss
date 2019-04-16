@@ -11,6 +11,7 @@
   padding-block-end: 0.5rem;
 }
 .suggestions li{
+  user-select: none;
   width: -webkit-fill-available;
   border-top-width: 0;
   list-style: none;

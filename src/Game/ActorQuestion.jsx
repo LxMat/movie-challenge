@@ -58,7 +58,7 @@ export class ActorQuestion extends Component {
       .then(correctAnswer => 
         this.props.update({
                 type:"SEARCH",
-                answer:selectedMovies,
+                answer:selectedMovies.map(movie=>movie.title),
                 correct:correctAnswer}))
     
   }
