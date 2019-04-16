@@ -28,7 +28,7 @@ export class ActorQuestion extends Component {
       return(<div>Select your movies</div>)
     }
     let button;
-    if (selectedMovies.length>0){
+    if (selectedMovies.length===3){
       button = <button onClick={ () => this.buttonClicked() }>Submit</button>
     }
     // this.props.update( {type:"SEARCH", answer:selectedMovies}
@@ -49,20 +49,46 @@ export class ActorQuestion extends Component {
     const {actorID,selectedMovies} = this.state;
     Promise.all(selectedMovies.map(movie =>
        MBD_API.getCredits(movie.id)
-        .then(credits => {                                        //we get the credits for each movieID from the API
-          return credits.cast.filter( cast => cast.id===actorID ) //filter out all IDs that dont match the correct ID
+        .then(credits => {
+          return credits.cast.filter( cast => cast.id===actorID )
         })))
-      .then(result =>                                             //result hase length 1 if correct, 0 if wrong
+      .then(result => //result hase length 1 if correct, 0 if wrong
         result.map( res => 
-          (res.length>0)?'correct':'wrong'))                      //change 1 and 0 to 'correct' and 'wrong' 
-      .then(correctAnswer =>                                      //submit answer to props
+          (res.length>0)?'correct':'wrong'))
+      .then(correctAnswer => 
         this.props.update({
                 type:"SEARCH",
-                answer:selectedMovies.map(movie=>movie.title),
+                answer:selectedMovies,
                 correct:correctAnswer}))
     
   }
 
+  checkActorSearchQuestion(ids,actorID){
+    
+    // return Promise.all(
+    //   ids.map(id => 
+    //     MDB_API.getCredits(id)
+    //       .then(data => 
+    //         data.cast.filter(actor => 
+    //           (actor.id === actorID)
+    //           )
+    //         )
+    //       ));
+  }
+
+  getCredits = ({id,title}) =>{
+    // MBD_API.getCredits(id)
+    // .then(data => data.cast.filter(actor => actor.id === this.state.actorID))
+    // .then(check => {
+    //   if(check.length<1){
+    //     // console.log('wrong ',title)
+    //   }else{
+    //     // console.log('right ',title)
+    //   }
+    // });
+   this.addSelectedMovie({title:title,id:id});
+  }
+  itemSubmitted = ({id,title}) => this.addSelectedMovie({title:title,id:id})
   checkAnswer(data){
     const actors = data.cast.map(actor =>{ return({
       id:actor.id,
@@ -79,7 +105,7 @@ export class ActorQuestion extends Component {
     return (
       <div>
         <em>{question}</em>
-        <TextSearch searchFunction={MBD_API.searchMovie} callback={this.getCredits}/>  
+        <TextSearch searchFunction={MBD_API.searchMovie} callback={this.itemSubmitted}/>  
         <SelectedMovies/>    
       </div>
     )
