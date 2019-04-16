@@ -1,7 +1,34 @@
-.suggestion-active{
-  font-weight: bold;
+.suggestion-active,
+.suggestions li:hover {
+  background:linear-gradient(to left, rgba(255,0,0,0), rgb(221, 129, 220));
+  color: #fae042;
+  cursor: pointer;
+  font-weight: 700;
+}
+.suggestions{
+  margin-top:0px;
+  padding:0.2rem;
+  padding-block-end: 0.5rem;
 }
 .suggestions li{
-  list-style-type: none
+  width: -webkit-fill-available;
+  border-top-width: 0;
+  list-style: none;
+  margin-top: 0;
+  // margin-left:-40px;
+  max-height: 143px;
+  overflow-y: auto;
+  padding-left: 0;
+  width: calc(300px + 1rem);
 }
 
+.searchInput{
+  border: none;
+  border-radius: 14px;  
+  width: -webkit-fill-available;  
+  padding:0.5rem;
+  &:focus{
+    // border: 1px solid #999;
+    outline: none;
+    }
+  }

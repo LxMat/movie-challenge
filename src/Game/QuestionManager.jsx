@@ -60,7 +60,7 @@ export class QuestionManager extends Component {
         );
       case "SEARCH":
         return(
-          <ActorQuestion question={q}/>
+          <ActorQuestion question={q} update={this.props.update}/>
         );
           
         case "GuessMovieImage":      
