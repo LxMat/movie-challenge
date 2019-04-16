@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import KeyHandler, { KEYPRESS, KEYDOWN } from 'react-key-handler';
 import StepSlider from "./StepSlider";
 
 export default class Slider extends Component {
@@ -30,6 +31,7 @@ export default class Slider extends Component {
 
   changeValue(e,value) {
     //let val = e.target.value;
+    console.log(e);
     this.setState({ currentVal: value });
   }
 
@@ -60,6 +62,21 @@ export default class Slider extends Component {
         <div className="range-slider">
           {sliderBullet}
           {/*{sliderLine}*/}
+          <KeyHandler
+            keyEventName={KEYDOWN}
+            keyValue="ArrowLeft"
+            onKeyHandle={()=>this.setState({ currentVal: this.state.currentVal-1 <0 ? this.state.max :  this.state.currentVal-1 })}
+          />
+          <KeyHandler
+            keyEventName={KEYDOWN}
+            keyValue="ArrowRight"
+            onKeyHandle={()=>this.setState({ currentVal: (this.state.currentVal+1)%(this.state.max+1) })}
+          />
+          <KeyHandler
+            keyEventName={KEYDOWN}
+            keyValue="Enter"
+            onKeyHandle={() => this.submit()}
+          />
           <StepSlider ref={this.myRef}
             value={this.state.currentVal}
             max={this.state.max}
