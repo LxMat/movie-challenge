@@ -71,14 +71,20 @@ export class Game extends Component {
   }
 
   updateAnswers(data) {
+    const { questionList,
+          state: {
+            currentQuestion,
+            }
+          } = this
+
     this.props.update({
       user: data,
-      correct: this.questionList[this.state.currentQuestion].correct
+      correct: questionList[currentQuestion].correct
     });
     this.setState({
-      currentQuestion: this.state.currentQuestion + 1
+      currentQuestion: currentQuestion + 1
     });
-    if (this.state.currentQuestion === this.state.movies.length - 1) {
+    if (currentQuestion === questionList.length - 1) {
       this.props.history.push("/results");
     }
   }
