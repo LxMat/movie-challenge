@@ -22,7 +22,8 @@ export default class QuestionGenerator {
       id: id,
       type:"SEARCH",
       name:name,
-      question:`name three movies that ${name} has appeared in`
+      question:`Name three movies that ${name} has appeared in`,
+      correct:id
     }
     return question
   }  

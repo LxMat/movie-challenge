@@ -28,6 +28,7 @@ class TextSearch extends Component {
     const {
       activeSuggestion,
       suggestions,
+      movieIDs
     } = this.state
      
     // User pressed the enter key, update the input and close the suggestions
@@ -39,11 +40,14 @@ class TextSearch extends Component {
         showSuggestions: false,
         userInput: suggestions[activeSuggestion]
       });
-      if(this.props.callback) this.props.callback(this.state.movieIDs[index])      
+      
+      
+      if(this.props.callback) this.props.callback({id:movieIDs[index],title:suggestions[index]})      
     }
     // User pressed the up arrow, decrement the index
     else if (e.keyCode === 38) {
       if (activeSuggestion === 0) {
+        this.setState({activeSuggestion:suggestions.length-1})
         return;
       }
       this.setState({ activeSuggestion: activeSuggestion - 1 });
@@ -103,10 +107,10 @@ debouncedOnChange = (eventVal) => {
   this.setState({loading:true});
   MDB_API.searchMovie(eventVal)
   .then(res => 
-    {      
+    { 
       this.setState({
         movieIDs:res.results.map(data => data.id),
-        suggestions:res.results.map(data=>data.title),
+        suggestions:res.results.map(data=>`${data.title} (${data.release_date.substring(0,4)})`),
         loading:false,
         showSuggestions:true
       });
@@ -178,10 +182,10 @@ debouncedOnChange = (eventVal) => {
     
   }
   onClick = index => {
-    const {movieIDs} = this.state;
+    const {movieIDs,suggestions} = this.state;
     this.setState({activeSuggestion:index})
-  
-    if(this.props.callback) this.props.callback(movieIDs[index]); //if callback exists run it.
+    
+    if(this.props.callback) this.props.callback({id:movieIDs[index],title:suggestions[index]}); //if callback exists run it.
   }
   render() {
     const {
@@ -194,7 +198,7 @@ debouncedOnChange = (eventVal) => {
 
     return (
       <div onChange={onChange}>
-        <input type="text" onChange={this.onChange} onKeyUp={onKeyDown} value={userInput}/>
+        <input type="text" className="searchInput" onChange={this.onChange} onKeyUp={onKeyDown} value={userInput}/>
         {this.renderSuggestions()}
       </div>
     );
