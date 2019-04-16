@@ -1,20 +1,29 @@
 import React, { Component } from "react";
+import StepSlider from "./StepSlider";
 
 export default class Slider extends Component {
   constructor(props) {
     super(props);
 
+    this.myRef = React.createRef();
+    this.changeValue = this.changeValue.bind(this);
+
+    this.stepsize = props.question.correct/10;
+    let min = props.question.correct-this.stepsize*2;
+    let max = props.question.correct+this.stepsize*2;
+
     this.state = {
-      min: props.min,
-      max: props.max,
-      currentVal: Math.round(props.max / 4)
+      min: min,//props.min,
+      max: max,
+      currentVal: props.question.correct+this.stepsize
     };
   }
 
-  changeValue(e) {
-    let val = e.target.value;
-    this.setState({ currentVal: val });
+  changeValue(e,value) {
+    //let val = e.target.value;
+    this.setState({ currentVal: value });
   }
+
   submit() {
     this.props.update(this.state.currentVal);
   }
@@ -41,7 +50,13 @@ export default class Slider extends Component {
         {this.props.question.question}
         <div className="range-slider">
           {sliderBullet}
-          {sliderLine}
+          {/*{sliderLine}*/}
+          <StepSlider ref={this.myRef}
+            value={this.state.currentVal}
+            max={this.state.max}
+            min ={this.state.min}
+            onchange={this.changeValue}
+              />
           <div className="MinMax">
             <span>{this.state.min}</span>
             <span>{this.state.max}</span>
