@@ -16,7 +16,7 @@ export default class Slider extends Component {
     this.setState({ currentVal: val });
   }
   submit() {
-    this.props.update(this.state.currentVal);
+    this.props.update({type:"SLIDER",answer:this.state.currentVal});
   }
   render() {
     let bulletLeft = `${(this.state.currentVal / this.state.max) * 578}px`;

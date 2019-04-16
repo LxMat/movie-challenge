@@ -13,7 +13,9 @@ class GuessMovieImage extends Component {
     buttonClicked() {
     console.log(this.myRef.current);
     let answer = this.myRef.current.value;
-    this.props.update(answer);
+    this.props.update({
+        type:"GuessMovieImage",
+        answer:answer});
     }
 
     render() {

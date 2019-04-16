@@ -5,19 +5,21 @@ export class ResultScreen extends Component {
     let answers = this.props.getAnswers().map((answer, i) => {
       return { question: i + 1, answer: answer };
     });
-    console.log(this.props.answers);
+    answers.map(row => console.log(row.answer.answer))
     let table = (
       <table>
         <tbody>
           <tr>
             <td>Question</td>
+            <td>Type</td>
             <td>Your Answer</td>
             <td>Correct</td>
           </tr>
           {answers.map((row, i) => (
             <tr key={i}>
               <td>{row.question}</td>
-              <td>{row.answer.user}</td>
+              <td>{row.answer.type}</td>
+              <td>{row.answer.answer}</td>
               <td>{row.answer.correct}</td>
             </tr>
           ))}
@@ -25,11 +27,6 @@ export class ResultScreen extends Component {
       </table>
     );
     return table;
-  }
-  renderAnswers() {
-    return this.props.getAnswers().map((answer, i) => {
-      return { index: i, answer: answer };
-    });
   }
   buttonClicked(){
     this.props.update();
