@@ -5,20 +5,26 @@ export default class Slider extends Component {
   constructor(props) {
     super(props);
 
+    //For keeping track of slider index and updating value
     this.myRef = React.createRef();
     this.changeValue = this.changeValue.bind(this);
 
-    let correct = props.question.correct;
-    this.stepsize = correct/10;
-    this.left = 1;
-    this.right = 2;
-    let min = correct-this.stepsize*this.left;
-    let max = correct+this.stepsize*this.right;
+    //Build random numbers on magnitude of answer
+    let correct = props.question.correct.toPrecision(2);
+    this.values = [];
+    for (let index = 0; index < 3; index++) {
+      this.values.push((Math.random()*correct*2).toPrecision(2));  
+    }
 
+    //Add answer and sort
+    this.values.push(correct);
+    this.values = this.values.sort((a,b)=>a-b);
+
+    //Keep track of slider index
     this.state = {
-      min: min,//props.min,
-      max: max,
-      currentVal: min
+      min: 0,
+      max: this.values.length-1,
+      currentVal: Math.floor((this.values.length-1)/2)
     };
   }
 
@@ -28,13 +34,13 @@ export default class Slider extends Component {
   }
 
   submit() {
-    this.props.update(this.state.currentVal);
+    this.props.update(this.values[this.state.currentVal]);
   }
   render() {
     let bulletLeft = `${(this.state.currentVal / this.state.max) * 578}px`;
     let sliderBullet = (
       <span id="rs-bullet" className="rs-label" style={{ left: bulletLeft }}>
-        {this.state.currentVal}
+        {this.values[this.state.currentVal]}
       </span>
     );
     let sliderLine = (
@@ -59,7 +65,7 @@ export default class Slider extends Component {
             max={this.state.max}
             min ={this.state.min}
             onchange={this.changeValue}
-            steps = {(this.left+this.right)*1.0}
+            steps = {this.state.max}
               />
           <div className="MinMax">
             <span>{this.state.min}</span>
