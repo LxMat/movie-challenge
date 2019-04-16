@@ -10,32 +10,32 @@ export class ActorQuestion extends Component {
       actorID: id,
       actor:name,
       question:question,
-      selectedMovies:[]
+      selectedMovies:[],
+      movieIDs:[]
       };
   }
 
   addSelectedMovie = movie => {
     let updatedSelection = this.state.selectedMovies;
     updatedSelection.push(movie)
-    console.log(updatedSelection) 
     this.setState({
       selectedMovies:updatedSelection
     })
   }
   SelectedMovies = () =>{
     const {selectedMovies} = this.state
-    console.log("selMov",selectedMovies)
     if(!selectedMovies[0]){
       return(<div>Select your movies</div>)
     }
     let button;
-    if (selectedMovies.length===3){
-      button = <button onClick={()=>this.props.update(selectedMovies)}>Submit</button>
+    if (selectedMovies.length>0){
+      button = <button onClick={ () => this.buttonClicked() }>Submit</button>
     }
+    // this.props.update( {type:"SEARCH", answer:selectedMovies}
     return (
     <div>
       movies:
-      <ul>{selectedMovies.map((title,index) => {
+      <ul>{selectedMovies.map(( { title }, index ) => {
         return (
           <li key ={index}>{title}</li>
         )
@@ -45,17 +45,22 @@ export class ActorQuestion extends Component {
     </div>)
   }
 
-  getCredits = ({id,title}) =>{
-    MBD_API.getCredits(id)
-    .then(data => data.cast.filter(actor => actor.id === this.state.actorID))
-    .then(check => {
-      if(check.length<1){
-        console.log('wrong ',title)
-      }else{
-        console.log('right ',title)
-      }
-    });
-   this.addSelectedMovie(title);
+  buttonClicked = ()=>{
+    const {actorID,selectedMovies} = this.state;
+    Promise.all(selectedMovies.map(movie =>
+       MBD_API.getCredits(movie.id)
+        .then(credits => {                                        //we get the credits for each movieID from the API
+          return credits.cast.filter( cast => cast.id===actorID ) //filter out all IDs that dont match the correct ID
+        })))
+      .then(result =>                                             //result hase length 1 if correct, 0 if wrong
+        result.map( res => 
+          (res.length>0)?'correct':'wrong'))                      //change 1 and 0 to 'correct' and 'wrong' 
+      .then(correctAnswer =>                                      //submit answer to props
+        this.props.update({
+                type:"SEARCH",
+                answer:selectedMovies.map(movie=>movie.title),
+                correct:correctAnswer}))
+    
   }
 
   checkAnswer(data){

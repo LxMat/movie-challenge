@@ -13,7 +13,6 @@ export default class QuestionGenerator {
     this.questions.push(this.generateCardQuestion(ids))
     this.questions.push(this.generateSliderQuestion(this.movies[1]))
     this.questions.push(this.generateGuessMovieImageQuestion(this.movies[0]))
-    console.log("questions: ",this.questions);
     return this.questions;
   }
 

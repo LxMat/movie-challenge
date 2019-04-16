@@ -52,7 +52,7 @@ export class Game extends Component {
      })
    ) 
   }
-
+  
   componentDidMount() {
     this.loadFromAPI()
     .then(movies => {
@@ -70,25 +70,29 @@ export class Game extends Component {
     .catch(e => console.error("failed loding from API :",e));
   }
 
-  updateAnswers(data) {
+  updateAnswers({answer,type,...other}) {
     const { questionList,
-          state: {
-            currentQuestion,
-            }
-          } = this
-
+      state: {
+        currentQuestion,
+      }
+    } = this
+    let correctAnswer = questionList[currentQuestion].correct;
+    if(type==="SEARCH") {
+      correctAnswer = other.correct;
+    }
     this.props.update({
-      user: data,
-      correct: questionList[currentQuestion].correct
-    });
-    this.setState({
-      currentQuestion: currentQuestion + 1
+      answer: answer,
+      type:type,
+      correct: correctAnswer
     });
     if (currentQuestion === questionList.length - 1) {
       this.props.history.push("/results");
     }
-  }
-
+    this.setState({
+      currentQuestion: currentQuestion + 1
+    });
+    }
+    
   render() {
     let movie = null;
 

@@ -65,7 +65,10 @@ export class CardQuestion extends Component {
     let answer = this.state.cards
       .filter(c => c.selected)
       .map(card => this.state.title[card.index]);
-    this.props.update(answer);
+    this.props.update({
+      type:"CARD",
+      answer:answer.pop()
+    });
   }
   
   render() {
