@@ -8,14 +8,17 @@ export default class Slider extends Component {
     this.myRef = React.createRef();
     this.changeValue = this.changeValue.bind(this);
 
-    this.stepsize = props.question.correct/10;
-    let min = props.question.correct-this.stepsize*2;
-    let max = props.question.correct+this.stepsize*2;
+    let correct = props.question.correct;
+    this.stepsize = correct/10;
+    this.left = 1;
+    this.right = 2;
+    let min = correct-this.stepsize*this.left;
+    let max = correct+this.stepsize*this.right;
 
     this.state = {
       min: min,//props.min,
       max: max,
-      currentVal: props.question.correct+this.stepsize
+      currentVal: min
     };
   }
 
@@ -56,6 +59,7 @@ export default class Slider extends Component {
             max={this.state.max}
             min ={this.state.min}
             onchange={this.changeValue}
+            steps = {(this.left+this.right)*1.0}
               />
           <div className="MinMax">
             <span>{this.state.min}</span>

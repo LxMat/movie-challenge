@@ -34,7 +34,7 @@ class StepSlider extends React.Component {
           value={this.props.value}
           min={this.props.min}
           max={this.props.max}
-          step={(this.props.max-this.props.min)/4.0}
+          step={(this.props.max-this.props.min)/this.props.steps}
           onChange={this.props.onchange}
         />
       </div>
