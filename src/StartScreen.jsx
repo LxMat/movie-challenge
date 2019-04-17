@@ -1,7 +1,13 @@
 import React from "react";
 import { MovieImage } from './MovieImage';
+import NameList from "./NameList";
+import FirestoreInterface from "./data/FirestoreInterface"
 
 export default function StartScreen(props) {
+
+  const myref = React.createRef();
+  
+
   return (
     <div className="center-me fit-width">
       <h2>Ultimate Movie Challenge</h2>
@@ -12,6 +18,8 @@ export default function StartScreen(props) {
         </button>
       </div>
       <MovieImage searchText="lord of the rings wallpaper"/>
+      <NameList />
+      <input onChange={(event)=>FirestoreInterface.addName(event.target.value)} />
     </div>
   );
 }

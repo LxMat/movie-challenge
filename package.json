@@ -5,6 +5,8 @@
   "dependencies": {
     "@material-ui/core": "^3.9.3",
     "@material-ui/lab": "^3.0.0-alpha.30",
+    "firebase": "^5.9.4",
+    "firebase-admin": "^7.2.0",
     "node-sass": "^4.11.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
