@@ -13,3 +13,13 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
+Button{
+text-transform: uppercase;
+border: 1px solid #FFF;
+background: none;  
+color: #FFF;
+&:hover{
+  color: black;
+  background: #FFF;
+}
+}

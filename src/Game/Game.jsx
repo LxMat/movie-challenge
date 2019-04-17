@@ -6,7 +6,7 @@ import QuestionGenerator from "./QuestionGenerator";
 import gameInstance from "../data/GameModel";
 import "./game.scss";
 import storedIDs from "../data/movieIDs.json"
-import TextSearch from "./TextSearch";
+
 export class Game extends Component {
   constructor(props) {
     super(props);
