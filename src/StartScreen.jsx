@@ -1,6 +1,6 @@
 import React from "react";
 import { MovieImage } from './MovieImage';
-import NameList from "./NameList";
+import NameList, {NameBox} from "./NameList";
 import FirestoreInterface from "./data/FirestoreInterface"
 
 export default function StartScreen(props) {
@@ -19,7 +19,7 @@ export default function StartScreen(props) {
       </div>
       <MovieImage searchText="lord of the rings wallpaper"/>
       <NameList />
-      <input onChange={(event)=>FirestoreInterface.addName(event.target.value)} />
+      <NameBox />
     </div>
   );
 }

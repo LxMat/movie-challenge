@@ -2,6 +2,8 @@
 import React, { Component } from 'react';
 import FS from './data/FirestoreInterface'
 
+export const NameBox = () => <input onChange={(event)=>FS.addName(event.target.value)} />
+
 export default class NameList extends Component {
     constructor(props) {
         super(props);
