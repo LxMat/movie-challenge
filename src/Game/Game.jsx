@@ -6,7 +6,7 @@ import QuestionGenerator from "./QuestionGenerator";
 import gameInstance from "../data/GameModel";
 import "./game.scss";
 import storedIDs from "../data/movieIDs.json"
-import TextSearch from "./TextSearch";
+
 export class Game extends Component {
   constructor(props) {
     super(props);
@@ -80,10 +80,12 @@ export class Game extends Component {
     if(type==="SEARCH") {
       correctAnswer = other.correct;
     }
+    console.log('questionList',questionList[currentQuestion])
     this.props.update({
       answer: answer,
       type:type,
-      correct: correctAnswer
+      correct: correctAnswer,
+      question:questionList[currentQuestion].question
     });
     if (currentQuestion === questionList.length - 1) {
       this.props.history.push("/results");

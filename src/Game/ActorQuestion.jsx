@@ -5,7 +5,6 @@ export class ActorQuestion extends Component {
   constructor(props){
     super(props);
     const {question,name,id} = props.question
-    // console.log(props.question);
     this.state = {
       actorID: id,
       actor:name,
@@ -18,6 +17,17 @@ export class ActorQuestion extends Component {
   addSelectedMovie = movie => {
     let updatedSelection = this.state.selectedMovies;
     updatedSelection.push(movie)
+    this.setState({
+      selectedMovies:updatedSelection
+    })
+  }
+  removeSelectedMovie(index){
+    let updatedSelection = this.state.selectedMovies;
+    if(updatedSelection.length===1){
+      updatedSelection.pop();
+    }else{
+      updatedSelection.splice(index,1);
+    }
     this.setState({
       selectedMovies:updatedSelection
     })
@@ -37,7 +47,10 @@ export class ActorQuestion extends Component {
       movies:
       <ul>{selectedMovies.map(( { title }, index ) => {
         return (
-          <li key ={index}>{title}</li>
+          // <i class="fas fa-times"></i>
+
+
+          <li key ={index}>{title} <span className="fas fa-times" onClick={() => this.removeSelectedMovie(index)}/></li>
         )
       })}
       </ul>
@@ -47,15 +60,15 @@ export class ActorQuestion extends Component {
 
   buttonClicked = ()=>{
     const {actorID,selectedMovies} = this.state;
-    Promise.all(selectedMovies.map(movie =>
-       MBD_API.getCredits(movie.id)
-        .then(credits => {
-          return credits.cast.filter( cast => cast.id===actorID )
+    Promise.all(selectedMovies.map(movie =>                           
+       MBD_API.getCredits(movie.id)                                       //get all credeits for each id
+        .then(credits => {    
+          return credits.cast.filter( cast => cast.id===actorID )         //filter the cast with corrrect actorID
         })))
-      .then(result => //result hase length 1 if correct, 0 if wrong
-        result.map( res => 
-          (res.length>0)?'correct':'wrong'))
-      .then(correctAnswer => 
+      .then(result =>                                                     //result has length 1 if correct, 0 if wrong
+        result.map( res =>                      
+          (res.length>0)?'correct':'wrong'))                              //change '1' to correct  '0' to wrong
+      .then(correctAnswer =>                                              //update the answer to props
         this.props.update({
                 type:"SEARCH",
                 answer:selectedMovies.map(movie=>movie.title),
@@ -63,38 +76,9 @@ export class ActorQuestion extends Component {
     
   }
 
-  checkActorSearchQuestion(ids,actorID){
-    
-    // return Promise.all(
-    //   ids.map(id => 
-    //     MDB_API.getCredits(id)
-    //       .then(data => 
-    //         data.cast.filter(actor => 
-    //           (actor.id === actorID)
-    //           )
-    //         )
-    //       ));
-  }
-
-  getCredits = ({id,title}) =>{
-    // MBD_API.getCredits(id)
-    // .then(data => data.cast.filter(actor => actor.id === this.state.actorID))
-    // .then(check => {
-    //   if(check.length<1){
-    //     // console.log('wrong ',title)
-    //   }else{
-    //     // console.log('right ',title)
-    //   }
-    // });
-   this.addSelectedMovie({title:title,id:id});
-  }
+  
   itemSubmitted = ({id,title}) => this.addSelectedMovie({title:title,id:id})
-  checkAnswer(data){
-    const actors = data.cast.map(actor =>{ return({
-      id:actor.id,
-      name:actor.name
-    })})
-  }
+
   render() {
     let actor = "Tom Hanks"
     const {

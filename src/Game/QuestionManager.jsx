@@ -78,10 +78,6 @@ export class QuestionManager extends Component {
     return (
       <div>
         {question}
-        <div className="navigation">
-          <button onClick={() => this.previousQuestion()}>back</button>
-          <button onClick={() => this.nextQuestion()}>next</button>
-        </div>
       </div>
     );
   }

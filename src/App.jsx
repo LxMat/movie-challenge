@@ -17,14 +17,15 @@ class App extends Component {
     this.getAnswers =this.getAnswers.bind(this);
     this.newGame = this.newGame.bind(this);
   }
-  updateAnswer({answer,type,correct}) {
+  updateAnswer({answer,type,correct,question}) {
     let newAnswers = this.state.answers;
-    newAnswers.push({answer,type,correct});
+    newAnswers.push({answer,type,correct,question});
     this.setState({
       answers: newAnswers
     });
   }
   getAnswers(){
+    console.log('getAnswer()',this.state.answers)
     return this.state.answers;
   }
   newGame(){

@@ -4,4 +4,26 @@
 #result {
   width: fit-content;
   background: rgba(83, 42, 191, 0.5);
+  border-radius: 8px;
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+}
+.result-row{
+  padding: 5px;
+  
+  margin-top: 4px;
+  margin-left: 3px;
+  margin-right: 3px;
+  border-radius: 8px;
+}
+.result-row.correct{
+  background: rgba(18, 140, 26, 0.7);
+}
+.result-row.almost{
+  background: rgb(214, 129, 0);
+}
+.result-row.wrong{
+  background: rgb(241, 14, 14);
 }
