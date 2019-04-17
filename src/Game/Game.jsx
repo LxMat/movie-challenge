@@ -80,10 +80,12 @@ export class Game extends Component {
     if(type==="SEARCH") {
       correctAnswer = other.correct;
     }
+    console.log('questionList',questionList[currentQuestion])
     this.props.update({
       answer: answer,
       type:type,
-      correct: correctAnswer
+      correct: correctAnswer,
+      question:questionList[currentQuestion].question
     });
     if (currentQuestion === questionList.length - 1) {
       this.props.history.push("/results");
