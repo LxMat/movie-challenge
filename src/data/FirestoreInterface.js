@@ -18,21 +18,24 @@ class FirestoreInterface {
 
     }
 
-    getNames(){
+    getUsers(){
         return this.firestore.collection('users').get()
         .catch((err) => {
             console.log('Error getting documents', err);
         });
     }
 
-    addName(name){
+    addUser(name, set, score){
         var docRef = this.firestore.collection('users').doc("test");
-        docRef.set({
-            name:name
-          });
+
+        let data = {name:name};
+        data["Question set "+set] = score;
+
+        docRef.set(data);
     }
     
 }
+
 
 const FI = new FirestoreInterface();
 export default FI;

@@ -2,13 +2,16 @@
 import React, { Component } from 'react';
 import FS from './data/FirestoreInterface'
 
-export const NameBox = () => <input onChange={(event)=>FS.addName(event.target.value)} />
+export const NameBox = ({set}) => <>
+<input onKeyUp={(event)=>event.keyCode===13 ? FS.addUser(event.target.value,set,1):null} />
+</>
 
-export default class NameList extends Component {
+
+export default class UserList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-        names: []
+        users: []
         };
 
         var doc = FS.firestore.collection('users');
@@ -23,21 +26,21 @@ export default class NameList extends Component {
     }
 
     componentDidMount(){
-        const names = []
-        FS.getNames()
+        const users = []
+        FS.getUsers()
         .then((snapshot) => {
             snapshot.forEach((doc) => {
-              names.push(doc.data().name)
+              users.push(doc.data())
             });
           })
-        .then(()=>{this.setState({names})})
+        .then(()=>{this.setState({users})})
     }
 
     render(){
-        console.log(this.state.names)
+        console.log(this.state.users)
         return(<>
                 <div>List of Players:</div>
-                {this.state.names.map(name => <div>{name}</div>)}
+                {this.state.users.map(user => <div>{user.name + " " + user["Question set 1"]}</div>)}
             </>
         )
     }
