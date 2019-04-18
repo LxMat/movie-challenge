@@ -39,7 +39,7 @@ class FirestoreInterface {
         let data = {name:name};
         data["Question set "+set] = score;
 
-        docRef.set(data);
+        docRef.set(data, {merge:true});
     }
     
 }
