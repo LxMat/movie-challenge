@@ -10,7 +10,10 @@ export class ResultScreen extends Component {
     let check
     check = (answer==correct)?'correct':'wrong';
 
-
+    if(type=='SLIDER'){
+      correct = correct.toPrecision(2)/1;
+      check = (answer==correct)?'correct':'wrong';
+    }
 
     if(type==='SEARCH'){
       // let a = rowData.correct.filter(a => a==='correct').length

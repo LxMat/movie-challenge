@@ -14,11 +14,11 @@ export default class Slider extends Component {
     let correct = props.question.correct.toPrecision(2);
     this.values = [];
     for (let index = 0; index < 3; index++) {
-      this.values.push((Math.random()*correct*2).toPrecision(2));  
+      this.values.push((Math.random()*correct*2).toPrecision(2)/1);  
     }
 
     //Add answer and sort
-    this.values.push(correct);
+    this.values.push(correct/1);
     this.values = this.values.sort((a,b)=>a-b);
 
     //Keep track of slider index
