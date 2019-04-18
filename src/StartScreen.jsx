@@ -20,7 +20,7 @@ export default function StartScreen(props) {
       
       <span className="start-poster"><MovieImage searchText="lord of the rings wallpaper"/></span>
       <UserList set="1"/>
-      <NameBox set="1" />
+      <NameBox set="1" score={1}/>
     </div>
   );
 }
