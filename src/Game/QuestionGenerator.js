@@ -1,18 +1,19 @@
 //question generateor creates a list of questionObjects that will be passed to the components
 //TODO:generateCardQuestion can only create  2-card questions. it should be more general
 export default class QuestionGenerator {
-  constructor() {
+  constructor(set) {
     this.index = 0;
     this.questions = [];
+    this.set = set;
   }
 
   generateQuestions(movies,actors) {
     this.movies = movies;
     let ids = movies.map(movie => movie.id)
-    // this.questions.push(this.generateSearchQuestion(actors[0]));
-    // this.questions.push(this.generateCardQuestion(ids))
+    // this.questions.push(this.generateSearchQuestion(actors[this.set]));
+    this.questions.push(this.generateCardQuestion(ids))
     // this.questions.push(this.generateSliderQuestion(this.movies[1]))
-    this.questions.push(this.generateGuessMovieImageQuestion(this.movies[3]))
+    // this.questions.push(this.generateGuessMovieImageQuestion(this.movies[3]))
     return this.questions;
   }
 
@@ -28,7 +29,8 @@ export default class QuestionGenerator {
   }  
   generateCardQuestion(ids) {
     const dates = this.movies.map(movie => movie.release_date)
-    
+    for(let i = 0;i<dates.length;i++){
+    }
     const question = {
       index: this.index,
       type: "CARD",
@@ -36,28 +38,20 @@ export default class QuestionGenerator {
       title:this.movies.map(movie => movie.title),
       poster:this.movies.map(movie => movie.poster),
       question: "which movie was released first",
-      correct: this.movies[this.getEarlierDate(dates)].title //we can either use the cardIndex or the cardID:263115
+      correct: this.movies[this.getEarliestDateIndex(dates)].title //we can either use the cardIndex or the cardID:263115
     }
     this.index++;
     return question;
   }
-  getEarlierDate(dates){
-    let smaller;
-
-    if(dates.length===0){
-      return 0;
+  getEarliestDateIndex(dates){
+    let smallest = 0;
+    for(let i=0;i<dates.length;i++){
+      if(Date.parse(dates[i])<Date.parse(dates[smallest])){ smallest = i;}
     }
+    return smallest;
 
-    for(let i=0;i<dates.length-1;i++){
-      if(Date.parse(dates[i])<Date.parse(dates[i+1])){
-        smaller = i
-      }else{
-        smaller = i+1
-      }
-    }
-    return smaller
   }
-
+  
   //TODO: make max min a random range
   generateSliderQuestion(movie) {
     let revenue = movie.revenue;

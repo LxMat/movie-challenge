@@ -14,7 +14,7 @@ export class Game extends Component {
 
     this.movies = [];
     this.state = {
-      id: id,
+      set: id,
       status: "LOADING",
       currentQuestion: 0,
       score: [],
@@ -27,8 +27,9 @@ export class Game extends Component {
   //loadFromAPI fetches the data and returns the important results as a list of Promises
   //TODO: ids should not be inside the method but retrieved from somewhere else
   loadFromAPI() {
+
     return Promise.all(
-      storedIDs.ids.map(id => {
+      storedIDs.ids[this.state.set].map(id => {
         return MDB_API.getMovie(id).then(movie => ({
           id: movie.id,
           poster: movie.poster_path,
@@ -100,7 +101,7 @@ export class Game extends Component {
     let movie = null;
 
     if (this.state.status === "LOADED") {
-      let qGen = new QuestionGenerator();
+      let qGen = new QuestionGenerator(this.state.set);
       this.questionList = qGen.generateQuestions(this.state.movies,this.state.actors);
 
       movie = (
