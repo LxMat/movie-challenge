@@ -10,10 +10,10 @@ export default class QuestionGenerator {
   generateQuestions(movies,actors) {
     this.movies = movies;
     let ids = movies.map(movie => movie.id)
-    // this.questions.push(this.generateSearchQuestion(actors[this.set]));
+    this.questions.push(this.generateSearchQuestion(actors[this.set]));
     this.questions.push(this.generateCardQuestion(ids))
-    // this.questions.push(this.generateSliderQuestion(this.movies[1]))
-    // this.questions.push(this.generateGuessMovieImageQuestion(this.movies[3]))
+    this.questions.push(this.generateSliderQuestion(this.movies[1]))
+    this.questions.push(this.generateGuessMovieImageQuestion(this.movies[3]))
     return this.questions;
   }
 
