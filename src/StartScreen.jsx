@@ -1,6 +1,6 @@
 import React from "react";
 import { MovieImage } from './MovieImage';
-import NameList, {NameBox} from "./NameList";
+import UserList, {NameBox} from "./UserList";
 import FirestoreInterface from "./data/FirestoreInterface"
 
 export default function StartScreen(props) {
@@ -19,8 +19,8 @@ export default function StartScreen(props) {
       </div>
       
       <span className="start-poster"><MovieImage searchText="lord of the rings wallpaper"/></span>
-      <NameList />
-      <NameBox />
+      <UserList />
+      <NameBox set="1" />
     </div>
   );
 }
