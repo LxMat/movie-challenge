@@ -49,7 +49,7 @@ export default class Slider extends Component {
     return (
       <div className="slider">
         <span className="question-text"><p>{this.props.question.question}</p></span>
-        <span className="question-text"><p>{this.values[this.state.currentVal]}</p></span>
+        <span className="question-text"><p>{"$"+this.values[this.state.currentVal]}</p></span>
         <div className="range-slider">
 
           <KeyHandler

@@ -64,7 +64,7 @@ export default class QuestionGenerator {
       min: min,
       max: max,
       correct: revenue,
-      question: `How much did ${movie.title} earn in revenue?`
+      question: `How much did ${movie.title} earn in revenue ($) ?`
     }
     this.index++;
     return question;
