@@ -2,6 +2,14 @@ import React, { Component } from "react";
 import KeyHandler, { KEYPRESS, KEYDOWN } from 'react-key-handler';
 import StepSlider from "./StepSlider";
 
+function getRandomIntInclusive(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random()*1.0 * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
+}
+
+const genRand = () => Math.random()* Math.pow(10,getRandomIntInclusive(6,11));
+
 export default class Slider extends Component {
   constructor(props) {
     super(props);
@@ -14,7 +22,8 @@ export default class Slider extends Component {
     let correct = props.question.correct.toPrecision(2);
     this.values = [];
     for (let index = 0; index < 3; index++) {
-      this.values.push((Math.random()*correct*2).toPrecision(2)/1);  
+      //this.values.push((Math.random()*correct*2).toPrecision(2)/1);  
+      this.values.push(genRand().toPrecision(2)/1);  
     }
 
     //Add answer and sort
