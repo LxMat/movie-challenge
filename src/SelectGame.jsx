@@ -9,9 +9,9 @@ export class SelectGame extends Component {
       itemSelected: 0
     };
     this.modedescriptions = [
-      "Description game mode 1",
-      "Description game mode 2",
-      "Description game mode 3"
+      "I'm Batman",
+      "May the Force be with you.",
+      "Hasta La Vista, Baby" 
     ];
   }
 
@@ -22,6 +22,7 @@ export class SelectGame extends Component {
   }
 
   generateGameModeItem() {
+    let setNames = ["Superhero Movies","70s Movies","90s Movies"]
     let descItems = [];
     let cName;
     for (let i = 0; i < 3; i++) {
@@ -37,7 +38,9 @@ export class SelectGame extends Component {
           onMouseOver={e => this.itemHover(i)}
           className={cName}
         >
-          game mode {i}
+          {//Question set {i}
+          }
+          {setNames[i]}
         </div>
       );
     }
@@ -70,18 +73,18 @@ export class SelectGame extends Component {
     return (
       <div>
         <div id="gameModeBox" className="center-me">
-          this is the select game mode box
+          Select a Question Set
           {this.generateGameModeItem()}
         </div>
         <div id="modeDescription" className="center-me">
-          this is the description box
+          {/*"Question Set Description"*/}
           <div className="descriptionItem">
             {" "}
             {this.modedescriptions[this.state.itemHover]}
           </div>
         </div>
         <div className="center-me fit-width">
-          <button
+          <button style={{marginTop:'30px'}}
             onClick={() =>{
               this.props.history.push(`/play/${this.state.itemSelected}`)
             }}

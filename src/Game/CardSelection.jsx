@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Card from "./Card";
+import KeyHandler, { KEYPRESS, KEYDOWN } from 'react-key-handler';
 import "./cardSelection.scss";
 
 
@@ -11,6 +12,8 @@ export class CardQuestion extends Component {
     console.log(props.question);
     let nCards = props.question.cards.length;
     let cardState = this.generateCardState(nCards);
+    this.selectedIndex = 0;
+
     this.state = {
       nCards: nCards,
       cards: cardState,
@@ -18,6 +21,8 @@ export class CardQuestion extends Component {
       title: props.question.title,
       poster: props.question.poster
     };
+
+    this.toggleSelected(this.selectedIndex);
   }
   //the card state is used to keep track on which cards are selected
   generateCardState(n) {
@@ -29,6 +34,8 @@ export class CardQuestion extends Component {
   }
 
   toggleSelected(i) {
+    this.selectedIndex = i;
+
     let cards = this.state.cards;
     cards.map(card => card.selected=false)
     cards[i].selected = true;
@@ -74,12 +81,34 @@ export class CardQuestion extends Component {
   
   render() {
       return (
+      
       <div className="center-me fit-width">
+      {this.keyHandler()}
         <span className="question-text">{this.props.question.question}</span>
         <div className="CardSelect  wrap">{this.renderCards()}</div>
         <span className="flex-center"><button className="card-submit-btn" onClick={() => this.buttonClicked()}>submit</button></span>
       </div>
     );
+  }
+
+  keyHandler(){return(<>
+        <KeyHandler
+            keyEventName={KEYDOWN}
+            keyValue="ArrowLeft"
+            onKeyHandle={()=> this.selectedIndex == 0 ? this.toggleSelected(this.state.nCards-1) :  this.toggleSelected(this.selectedIndex-1) }
+          />
+          <KeyHandler
+            keyEventName={KEYDOWN}
+            keyValue="ArrowRight"
+            onKeyHandle={()=> this.selectedIndex == this.state.nCards-1 ? this.toggleSelected(0) :  this.toggleSelected(this.selectedIndex+1) }
+          />
+          <KeyHandler
+            keyEventName={KEYDOWN}
+            keyValue="Enter"
+            onKeyHandle={() => this.buttonClicked()}
+          />
+        </>
+  )
   }
 }
 
