@@ -37,7 +37,7 @@ export default class QuestionGenerator {
       cards: ids,
       title:this.movies.map(movie => movie.title),
       poster:this.movies.map(movie => movie.poster),
-      question: "which movie was released first",
+      question: "which movie was released first?",
       correct: this.movies[this.getEarliestDateIndex(dates)].title //we can either use the cardIndex or the cardID:263115
     }
     this.index++;
@@ -64,7 +64,7 @@ export default class QuestionGenerator {
       min: min,
       max: max,
       correct: revenue,
-      question: `How much did ${movie.title} earn in revenue`
+      question: `How much did ${movie.title} earn in revenue?`
     }
     this.index++;
     return question;

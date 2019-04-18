@@ -47,14 +47,14 @@ export default class UserList extends Component {
         //console.log(test);
         //console.log(test.sort((a,b)=>a.points-b.points));
 
-        return(<>
+        return(<div style={{marginTop:'10px', borderTop:"solid"}}>
                 <div>Current scores:</div>
                 {this.state.users.map((user) => 
                     user["Question set "+ this.props.set] !=undefined ? 
                     <div key={user.name}>{user.name + ": " + user["Question set "+ this.props.set]}</div>:
                     null)
                 }
-            </>
+            </div>
         )
     }
 }

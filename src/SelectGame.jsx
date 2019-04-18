@@ -84,7 +84,7 @@ export class SelectGame extends Component {
           </div>
         </div>
         <div className="center-me fit-width">
-          <button
+          <button style={{marginTop:'30px'}}
             onClick={() =>{
               this.props.history.push(`/play/${this.state.itemSelected}`)
             }}
