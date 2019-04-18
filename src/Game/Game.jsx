@@ -89,7 +89,7 @@ export class Game extends Component {
       question:questionList[currentQuestion].question
     });
     if (currentQuestion === questionList.length - 1) {
-      this.props.history.push("/results");
+      this.props.history.push("/results/"+window.location.pathname.split('/')[2]);
     }
     this.setState({
       currentQuestion: currentQuestion + 1

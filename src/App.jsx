@@ -44,7 +44,7 @@ class App extends Component {
             render={props => <Game {...props} update={this.updateAnswer} />}
           />
           <Route
-            path="/results"
+            path="/results/:id"
             render={props => (
               <ResultScreen {...props} getAnswers={this.getAnswers} update={this.newGame} />
             )}
