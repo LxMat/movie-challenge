@@ -5,10 +5,10 @@ import Slider from '@material-ui/lab/Slider';
 
 const styles = {
   root: {
-    width:"85vw"
+    width:"75vw"
   },
   slider: {
-    // padding: '22px 0px',
+    padding: '22px 0px',
   },
 };
 
@@ -22,12 +22,12 @@ class StepSlider extends React.Component {
     this.setState({ value });
   };
   */
-
-  render() {
+ render() {
+  if (window.width<767){}
     console.log(window.screen.width)
     const { classes } = this.props;
     //const { value } = this.state;
-    console.log(this.props.value)
+    // console.log(this.props.value)
     return (
       <div className={classes.root}>
         <Slider
@@ -37,6 +37,7 @@ class StepSlider extends React.Component {
           max={this.props.max}
           step={(this.props.max-this.props.min)/this.props.steps}
           onChange={this.props.onchange}
+          // vertical
         />
       </div>
     );

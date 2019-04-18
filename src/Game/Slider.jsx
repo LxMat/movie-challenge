@@ -39,30 +39,18 @@ export default class Slider extends Component {
   }
 
   changeValue(e,value) {
-    //let val = e.target.value;
-    console.log(e);
     this.setState({ currentVal: value });
   }
 
   submit() {
-
     this.props.update({type:"SLIDER",answer:this.values[this.state.currentVal]});
   }
   render() {
-    // let bulletLeft = `${(this.state.currentVal / this.state.max) * 578}px`;
-    let sliderBullet = (
-      <span id="rs-bullet" className="rs-label center-me">
-        {this.values[this.state.currentVal]}
-      </span>
-    );
- 
-
     return (
       <div className="slider">
         <span className="question-text"><p>{this.props.question.question}</p></span>
         <div className="range-slider">
-          {sliderBullet}
-          {/*{sliderLine}*/}
+
           <KeyHandler
             keyEventName={KEYDOWN}
             keyValue="ArrowLeft"
@@ -85,10 +73,6 @@ export default class Slider extends Component {
             onchange={this.changeValue}
             steps = {this.state.max}
               />
-          <div className="MinMax">
-            <span>{this.state.min}</span>
-            <span>{this.state.max}</span>
-          </div>
         </div>
         <button onClick={() => this.submit()}>Submit</button>
       </div>
