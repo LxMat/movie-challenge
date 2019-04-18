@@ -9,7 +9,9 @@
 .question{
   text-align: center;
 }
-
+.question-text{
+transform: translate(-25%,0);
+}
 .slider {
   display: flex;
   flex-direction: column;

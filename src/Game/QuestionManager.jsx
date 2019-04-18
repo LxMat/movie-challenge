@@ -18,29 +18,6 @@ export class QuestionManager extends Component {
     };
   }
 
-  nextQuestion() {
-    let nextIndex = this.state.currentQuestion + 1;
-
-    //check if there are more questions avilable
-    if (nextIndex >= this.questionList.length) {
-      this.props.history.push("/results");
-    }
-    this.setState({
-      currentQuestion: nextIndex
-    });
-  }
-  previousQuestion() {
-    let prevIndex = this.state.currentQuestion - 1;
-
-    //check if there are more questions avilable
-    if (prevIndex < 0) {
-      this.props.history.push("/selectgame");
-    }
-    this.setState({
-      currentQuestion: prevIndex
-    });
-  }
-
   componentWillMount() {
     this.questionList = this.props.questionList;
   }

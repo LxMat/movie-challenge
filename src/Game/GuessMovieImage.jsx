@@ -29,7 +29,7 @@ class GuessMovieImage extends Component {
         const { path, question } = this.props.question
         return (
             <div className="ImageQuestion">
-                <div>{question}</div>
+                <div className="question-text">{question}</div>
                 <img alt="poster" src={`https://image.tmdb.org/t/p/w500${path}`}/> <br/>
                 <span className="flex-center"><input type="text" autoFocus="true" ref={this.myRef} onKeyDown={this.onKeyDown}></input>
                 <button onClick={() => this.submitAnswer()}>submit</button>

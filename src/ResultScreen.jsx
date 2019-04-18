@@ -2,11 +2,9 @@ import React, { Component } from "react";
 import "./resultscreen.scss";
 export class ResultScreen extends Component {
 
-  createRow(rowData,index){
-    console.log(rowData)
-    let check;
-    const {type,correct,answer,question} = rowData
-    check = (rowData.answer==rowData.correct)?'correct':'wrong';
+  checkAnswer(answer,correct,type){
+    let check
+    check = (answer==correct)?'correct':'wrong';
     if(type==='SEARCH'){
       // let a = rowData.correct.filter(a => a==='correct').length
        let nCorrect = correct.filter(a => a==='correct').length
@@ -20,6 +18,14 @@ export class ResultScreen extends Component {
     }else if(type==='GuessMovieImage'){
       check = (answer.toLowerCase()===correct.toLowerCase())?'correct':'wrong';
     }
+    return check;
+
+  }
+
+  createRow(rowData,index){
+    console.log(rowData)
+    const {type, correct, answer, question} = rowData
+    let check = this.checkAnswer(answer,correct,type)
     return(
       <div key={index} className={`result-row ${check}`}>
         Question {index+1}: {question} <br/>
@@ -31,12 +37,13 @@ export class ResultScreen extends Component {
   renderResults() {
     let answers = this.props.getAnswers()
     return(answers.map((row,index) => this.createRow(row,index)));
-
-    
   }
   buttonClicked(){
     this.props.update();
     this.props.history.push("/selectgame")
+  }
+  componentWillUnmount(){
+    this.props.update();
   }
   render() {
     return (

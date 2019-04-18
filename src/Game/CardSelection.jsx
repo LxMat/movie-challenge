@@ -75,9 +75,9 @@ export class CardQuestion extends Component {
   render() {
       return (
       <div className="center-me fit-width">
-        <p className="question">{this.props.question.question}</p>
+        <span className="question-text">{this.props.question.question}</span>
         <div className="CardSelect  wrap">{this.renderCards()}</div>
-        <button onClick={() => this.buttonClicked()}>submit</button>
+        <span className="flex-center"><button className="card-submit-btn" onClick={() => this.buttonClicked()}>submit</button></span>
       </div>
     );
   }

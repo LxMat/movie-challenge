@@ -59,7 +59,7 @@ export default class Slider extends Component {
 
     return (
       <div className="slider">
-        {this.props.question.question}
+        <span className="question-text"><p>{this.props.question.question}</p></span>
         <div className="range-slider">
           {sliderBullet}
           {/*{sliderLine}*/}

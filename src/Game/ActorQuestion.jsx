@@ -88,7 +88,7 @@ export class ActorQuestion extends Component {
       }} = this
     return (
       <div>
-        <em>{question}</em>
+        <span className="question-text">{question}</span>
         <TextSearch searchFunction={MBD_API.searchMovie} callback={this.itemSubmitted}/>  
         <SelectedMovies/>    
       </div>

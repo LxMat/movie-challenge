@@ -12,7 +12,7 @@ export default class QuestionGenerator {
     this.questions.push(this.generateSearchQuestion(actors[0]));
     this.questions.push(this.generateCardQuestion(ids))
     this.questions.push(this.generateSliderQuestion(this.movies[1]))
-    this.questions.push(this.generateGuessMovieImageQuestion(this.movies[2]))
+    this.questions.push(this.generateGuessMovieImageQuestion(this.movies[3]))
     return this.questions;
   }
 
@@ -28,6 +28,7 @@ export default class QuestionGenerator {
   }  
   generateCardQuestion(ids) {
     const dates = this.movies.map(movie => movie.release_date)
+    
     const question = {
       index: this.index,
       type: "CARD",
@@ -39,6 +40,22 @@ export default class QuestionGenerator {
     }
     this.index++;
     return question;
+  }
+  getEarlierDate(dates){
+    let smaller;
+
+    if(dates.length===0){
+      return 0;
+    }
+
+    for(let i=0;i<dates.length-1;i++){
+      if(Date.parse(dates[i])<Date.parse(dates[i+1])){
+        smaller = i
+      }else{
+        smaller = i+1
+      }
+    }
+    return smaller
   }
 
   //TODO: make max min a random range
@@ -73,16 +90,6 @@ export default class QuestionGenerator {
     }
     this.index++;
     return question;
-  }
-
-
-  //compares a list of two release_dates and returns the index of earlier date
-  getEarlierDate(dates) {
-    if (Date.parse(dates[0]) < Date.parse(dates[1])) {
-      return 0
-    } else {
-      return 1
-    }
   }
 }
 
