@@ -26,7 +26,15 @@ class FirestoreInterface {
     }
 
     addUser(name, set, score){
-        var docRef = this.firestore.collection('users').doc("test");
+
+        const myStorage = window.localStorage;
+        const uuidv1 = require('uuid/v1');
+
+        console.log(myStorage.getItem('uuid'))
+        const a = myStorage.getItem('uuid') === null ? myStorage.setItem('uuid', uuidv1()):null;
+        //uuidv1(); // ⇨ '45745c60-7b1a-11e8-9c9c-2d42b21b1a3e'
+
+        var docRef = this.firestore.collection('users').doc(myStorage.getItem('uuid'));
 
         let data = {name:name};
         data["Question set "+set] = score;
