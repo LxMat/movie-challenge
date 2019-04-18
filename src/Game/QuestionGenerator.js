@@ -12,7 +12,7 @@ export default class QuestionGenerator {
     this.questions.push(this.generateSearchQuestion(actors[0]));
     this.questions.push(this.generateCardQuestion(ids))
     this.questions.push(this.generateSliderQuestion(this.movies[1]))
-    this.questions.push(this.generateGuessMovieImageQuestion(this.movies[0]))
+    this.questions.push(this.generateGuessMovieImageQuestion(this.movies[2]))
     return this.questions;
   }
 
@@ -61,12 +61,14 @@ export default class QuestionGenerator {
 
   generateGuessMovieImageQuestion(movie) {
     //const dates = this.movies.map(movie => movie.release_date)
+    
     const title  = movie.title;
     const question = {
       index: this.index,
       type: "GuessMovieImage",
       movieID: movie.id,
       correct: title,
+      path:movie.backdrop_path,
       question: `What's the name of the movie in the image?`
     }
     this.index++;

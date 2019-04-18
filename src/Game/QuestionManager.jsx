@@ -63,10 +63,10 @@ export class QuestionManager extends Component {
           <ActorQuestion question={q} update={this.props.update}/>
         );
           
-        case "GuessMovieImage":      
-              return (
-                <GuessMovieImage question={q} update={this.props.update}/>
-              );
+      case "GuessMovieImage":      
+            return (
+              <GuessMovieImage question={q} update={this.props.update}/>
+            );
 
       default:
         return <p>failed to load the question</p>;

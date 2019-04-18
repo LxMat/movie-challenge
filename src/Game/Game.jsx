@@ -35,7 +35,8 @@ export class Game extends Component {
           title: movie.title,
           release_date: movie.release_date,
           budget: movie.budget,
-          revenue: movie.revenue
+          revenue: movie.revenue,
+          backdrop_path:movie.backdrop_path
         }));
       })
     );

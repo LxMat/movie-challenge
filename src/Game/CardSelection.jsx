@@ -60,6 +60,7 @@ export class CardQuestion extends Component {
     return cardList;
   }
 
+  
   //filters selected cards and updates.
   buttonClicked() {
     let answer = this.state.cards

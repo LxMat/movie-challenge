@@ -35,7 +35,7 @@ export class ActorQuestion extends Component {
   SelectedMovies = () =>{
     const {selectedMovies} = this.state
     if(!selectedMovies[0]){
-      return(<div>Select your movies</div>)
+      return(<div>Type to start searching</div>)
     }
     let button;
     if (selectedMovies.length===3){

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {MovieImage} from '../MovieImage';
+import './movieimage.scss';
 
 class GuessMovieImage extends Component {
     
@@ -8,23 +8,33 @@ class GuessMovieImage extends Component {
 
         this.searchText = props.question.correct.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '')+" wallpaper";
         this.myRef = React.createRef();
+        
       }
 
-    buttonClicked() {
-    console.log(this.myRef.current);
+    submitAnswer() {
     let answer = this.myRef.current.value;
     this.props.update({
         type:"GuessMovieImage",
         answer:answer});
     }
+    onKeyDown = (e)=>{
+
+        //submit on enter
+        if(e.which===13){
+            this.submitAnswer()
+        }
+    }
 
     render() {
+        const { path, question } = this.props.question
         return (
-            <>
-                <MovieImage searchText={this.searchText}/>
-                <input type="text" ref={this.myRef}></input>
-                <button onClick={() => this.buttonClicked()}>submit</button>
-            </>
+            <div className="ImageQuestion">
+                <div>{question}</div>
+                <img alt="poster" src={`https://image.tmdb.org/t/p/w500${path}`}/> <br/>
+                <span className="flex-center"><input type="text" autoFocus="true" ref={this.myRef} onKeyDown={this.onKeyDown}></input>
+                <button onClick={() => this.submitAnswer()}>submit</button>
+                </span>
+            </div>
         );
     }
 }

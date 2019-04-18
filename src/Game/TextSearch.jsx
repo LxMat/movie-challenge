@@ -38,7 +38,7 @@ class TextSearch extends Component {
       this.setState({
         activeSuggestion: 0,
         showSuggestions: false,
-        userInput: suggestions[activeSuggestion]
+        userInput: ""
       });
       
       
@@ -198,7 +198,7 @@ debouncedOnChange = (eventVal) => {
 
     return (
       <div onChange={onChange}>
-        <input type="text" className="searchInput" onChange={this.onChange} onKeyUp={onKeyDown} value={userInput}/>
+        <input type="text" autofocus = "true" className="searchInput" onChange={this.onChange} onKeyUp={onKeyDown} value={userInput}/>
         {this.renderSuggestions()}
       </div>
     );

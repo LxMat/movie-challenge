@@ -17,7 +17,8 @@ export default function StartScreen(props) {
           this is a Knapp
         </button>
       </div>
-      <MovieImage searchText="lord of the rings wallpaper"/>
+      
+      <span className="start-poster"><MovieImage searchText="lord of the rings wallpaper"/></span>
       <NameList />
       <NameBox />
     </div>
