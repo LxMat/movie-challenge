@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import "./selectgame.scss";
+import KeyHandler, { KEYPRESS, KEYDOWN } from 'react-key-handler';
+
 
 export class SelectGame extends Component {
   constructor(props) {
@@ -72,6 +74,7 @@ export class SelectGame extends Component {
 
     return (
       <div>
+        {this.keyHandler()}
         <div id="gameModeBox" className="center-me">
           Select a Question Set
           {this.generateGameModeItem()}
@@ -95,6 +98,31 @@ export class SelectGame extends Component {
       </div>
     );
   }
+
+  keyHandler(){return(<>
+    <KeyHandler
+        keyEventName={KEYDOWN}
+        keyValue="ArrowUp"
+        onKeyHandle={()=> this.state.itemSelected == 0 ? 
+          this.setState({itemSelected:2,itemHover:2}) :  
+          this.setState({itemSelected:this.state.itemSelected-1,itemHover:this.state.itemHover-1}) }
+      />
+      <KeyHandler
+        keyEventName={KEYDOWN}
+        keyValue="ArrowDown"
+        onKeyHandle={()=> this.state.itemSelected == 2 ? 
+          this.setState({itemSelected:0,itemHover:0}) :  
+          this.setState({itemSelected:this.state.itemSelected+1,itemHover:this.state.itemHover+1}) }      />
+      <KeyHandler
+        keyEventName={KEYDOWN}
+        keyValue="Enter"
+        onKeyHandle={() =>{
+          this.props.history.push(`/play/${this.state.itemSelected}`)
+        }}
+      />
+    </>
+)
+}
 }
 
 export default SelectGame;
