@@ -6,11 +6,11 @@ html{
   min-height: 100vh;
   font-family: fahkwang;
   font-variant-caps: petite-caps;
-  
+   
 }
 body {
   color: $primary-text-color;
-  background: rgb(232, 61, 253);
+  background: $background-blue;
   background-image: linear-gradient(326deg, rgba(232, 61, 253, 1) 0%, rgba(34, 35, 170, 1) 40%, rgba(18, 5, 105, 1) 87%, rgba(11, 5, 105, 1) 100%);
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -28,3 +28,21 @@ color: #FFF;
 .start-poster img{
   border-radius: 8px;
 }
+@media screen and (min-width: 320px) and (max-width: 767px){
+  .start-poster img{
+    width:100%
+  }
+}
+
+
+//  and (orientation: landscape) {
+//   html {
+//     transform: rotate(-90deg);
+//     transform-origin: left top;
+//     width: 100vh;
+//     overflow-x: hidden;
+//     position: absolute;
+//     top: 100%;
+//     left: 0;
+//   }
+// }

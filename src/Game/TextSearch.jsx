@@ -110,7 +110,7 @@ debouncedOnChange = (eventVal) => {
     { 
       this.setState({
         movieIDs:res.results.map(data => data.id),
-        suggestions:res.results.map(data=>`${data.title} (${data.release_date.substring(0,4)})`),
+        suggestions:res.results.slice(0,10).map(data=>`${data.title} (${data.release_date.substring(0,4)})`),
         loading:false,
         showSuggestions:true
       });

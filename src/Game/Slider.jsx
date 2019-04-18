@@ -40,22 +40,13 @@ export default class Slider extends Component {
     this.props.update({type:"SLIDER",answer:this.values[this.state.currentVal]});
   }
   render() {
-    let bulletLeft = `${(this.state.currentVal / this.state.max) * 578}px`;
+    // let bulletLeft = `${(this.state.currentVal / this.state.max) * 578}px`;
     let sliderBullet = (
-      <span id="rs-bullet" className="rs-label" style={{ left: bulletLeft }}>
+      <span id="rs-bullet" className="rs-label center-me">
         {this.values[this.state.currentVal]}
       </span>
     );
-    let sliderLine = (
-      <input
-        id="rs-line"
-        className="rs-range"
-        type="range"
-        onInput={e => this.changeValue(e)}
-        min={this.state.min}
-        max={this.state.max}
-      />
-    );
+ 
 
     return (
       <div className="slider">
