@@ -76,7 +76,7 @@ return check;
         </div>
         <div>points:{this.points}</div>
         
-        <NameBox set={window.location.pathname.split('/')[2]} score={this.points}/>
+        Add Name to Highscore: (press enter) <NameBox set={window.location.pathname.split('/')[2]} score={this.points}/>
       </div>
       <UserList set={window.location.pathname.split('/')[2]}/>
       </>
