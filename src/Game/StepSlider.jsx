@@ -5,7 +5,8 @@ import Slider from '@material-ui/lab/Slider';
 
 const styles = {
   root: {
-    width:"75vw"
+    width:"75vw",
+    overflow:"-webkit-paged-x", //hack solution for bugged component....
   },
   slider: {
     padding: '22px 0px',
