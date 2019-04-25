@@ -25,7 +25,6 @@ export class Game extends Component {
   }
 
   //loadFromAPI fetches the data and returns the important results as a list of Promises
-  //TODO: ids should not be inside the method but retrieved from somewhere else
   loadFromAPI() {
 
     return Promise.all(
